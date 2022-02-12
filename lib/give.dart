@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:video_player/video_player.dart';
 
 
 
-void main() {
-  runApp(Give());
-}
+//void main() {
+//  runApp(Give());
+//}
 
 class Give extends StatelessWidget {
 //  const Give({Key? key}) : super(key: key);
@@ -69,20 +71,35 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final support = Container(
       width: MediaQuery.of(context).size.width,
-      height: 120,
-      child: Row(
+      height: 550.0,
+      child: Column(
         children: [
 
-          Expanded(
-            child: Container(
+
+             Container(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: HexColor("#ccccff")
               ),
-              height: 100,
+              height: 180,
               child: Column(
                 children: [
-                  Text("Seed Faith"),
-                  Text("Let Your Faith Work"),
+                  Text(
+                      "Seed Faith",
+                    style: TextStyle(
+                      fontSize: 19.0,
+                      color: HexColor("#66ccff"),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  Text(
+                      "Let Your Faith Work",
+                    style: TextStyle(
+                      fontSize: 19.0,
+                      color: Colors.black,
+                    ),
+                  ),
+
                   Text(
                       "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it"
                   ),
@@ -93,20 +110,35 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-          ),
 
-          Expanded(
-            child: Container(
+
+
+             Container(
               decoration: BoxDecoration(
-                color: Colors.amberAccent,
+                color: HexColor("#e8d1a5")
               ),
-              height: 100,
+              height: 180,
               child: Column(
                 children: [
-                  Text("Offering"),
-                  Text("Lets Support the kingdom"),
                   Text(
-                      "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it"
+                      "Offering",
+                    style: TextStyle(
+                      fontSize: 19.0,
+                      color: HexColor("#66ccff"),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  Text(
+                      "Lets Support the kingdom",
+                  ),
+
+                  Text(
+                      "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it",
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.black,
+                    ),
                   ),
                   ElevatedButton(
                       onPressed: (){},
@@ -115,20 +147,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-          ),
 
-          Expanded(
-            child: Container(
+
+
+             Container(
               decoration: BoxDecoration(
-                color: Colors.redAccent,
+                color: HexColor("#e3a3a3"),
               ),
-              height: 100,
+              height: 180,
               child: Column(
                 children: [
-                  Text("Church Project"),
+                  Text(
+                      "Church Project",
+                    style: TextStyle(
+                      fontSize: 19.0,
+                      color: HexColor("#66ccff"),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
                   Text("Together we shall build"),
+
                   Text(
-                      "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it"
+                      "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it",
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.black,
+                    ),
                   ),
                   ElevatedButton(
                       onPressed: (){},
@@ -137,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-          ),
+
 
 
         ],
@@ -154,27 +199,131 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.normal,
+            fontSize: 16.0,
           ),
         ),
       ),
     );
 
     final footer = Container(
-      height: 100,
+      height: 250,
       width: MediaQuery.of(context).size.width,
-      child: Row(
+      decoration: BoxDecoration(
+          color: HexColor('#e6f0fb')
+      ),
+
+      child: Column(
         children: [
-          Text(
-            "GloryCity Chapel International",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.blue,
+
+          Container(
+            margin: EdgeInsets.only(top: 7.0),
+            child: Center(
+              child: Text(
+                "GloryCity Chapel International",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
+          ),
+
+
+
+          SizedBox(height: 5.0,),
+
+          Container(
+            margin: EdgeInsets.only(top: 4.0),
+            child: Column(
+              children: [
+                Text(
+                  "973-567-7746",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "info@glorycitychapel.com",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+
+                ),
+                Text(
+                  "134 Evergreen pl, Suite 902",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "East Orange, NJ 07018",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+
+              ],
             ),
 
           ),
+
+          Container(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                Text(
+                  "Opening Hours:",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "Sunday 1st Service: 10am - 1pm",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "​​Sunday 2nd Service: 1:15pm - 2:30pm",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "​Friday: 8:30pm - 1:00am",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+
+              ],
+            ),
+
+          ),
+
+
+
         ],
       ),
     );
+
 
 
 

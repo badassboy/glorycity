@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:video_player/video_player.dart';
 
 
@@ -66,140 +69,320 @@ class _MyHomePageState extends State<MyHomePage> {
 
     );
 
-
-    final pictures = Container(
-      height: 100,
-      width: MediaQuery.of(context).size.width,
-      child: Row(
-        children: [
-
-          Expanded(
-              child:  Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-                    )
-                ),
-              ),
-          ),
-
-          Expanded(
-            child:  Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-                  )
-              ),
-            ),
-          ),
-
-
-
-
-        ],
-      ),
-    );
-
-
-
-
     final statement = Container(
       width: MediaQuery.of(context).size.width,
-      height: 120,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      height: 450.0,
+      decoration: BoxDecoration(
+        color: HexColor("#ffffff")
+      ),
+      child:Column(
+
         children: [
 
-          Expanded(
-              child: Card(
-                child: ListTile(
-                  title: Text("Vision"),
-                  subtitle: Text("Our Vision is to be Christ Centered Community to bring people to Jesus and membership in His family, develop them to Christlike maturity, and equip them for their ministry in the church and life mission in the world and build a great city for all people through a gospel movement that brings personal conversion, community formation, social justice and cultural renewal to the world in order to magnify God's name"),
-                ),
-              )
-          ),
 
-          Expanded(
-              child: Card(
-                child: ListTile(
-                  title: Text("Mission"),
-                  subtitle: Text("GloryCity Chapel International is prophetic, liberating and progressing christian community of faith that honors, values and welcomes all people. We preach relevant, vibrant and scripture-based message that inspires and impacts the people. We challenge each other to make our lives count, as we invite everyone to be transformed in mind, body and spirit. From a place of trust, wholeness and holiness, we reach out as the hands, feet and heart of Christ through acts of justice and compassion to make a difference in our world. Our Mission is to accept, embody and declare God's love for all"),
-                ),
-              )
-          ),
+            Container(
+              child: Column(
+                children: [
+                  Text(
+                    "Our Vision",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17.0,
+                    ),
+                  ),
+
+                  Text(
+                    "Our Vision is to be Christ Centered Community to bring people to Jesus and membership in His family, develop them to Christlike maturity, and equip them for their ministry in the church and life mission in the world and build a great city for all people through a gospel movement that brings personal conversion, community formation, social justice and cultural renewal to the world in order to magnify God's name",
+                    style: TextStyle(
+                      color: HexColor("#404040"),
+                      fontSize: 17.0,
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+          SizedBox(height: 10.0,),
+
+          Container(
+              child: Column(
+                children: [
+                  Text(
+                      "Our Mission",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17.0,
+                    ),
+                  ),
+
+                  Text(
+                      "Our Vision is to be Christ Centered Community to bring people to Jesus and membership in His family, develop them to Christlike maturity, and equip them for their ministry in the church and life mission in the world and build a great city for all people through a gospel movement that brings personal conversion, community formation, social justice and cultural renewal to the world in order to magnify God's name",
+                    style: TextStyle(
+                      color: HexColor("#404040"),
+                      fontSize: 17.0,
+                    ),
+
+                  )
+                ],
+              ),
+            ),
 
         ],
       ),
 
     );
-
-
-
-
-
 
 
     final others = Container(
       width: MediaQuery.of(context).size.width,
-      height: 120,
+      height: 400,
 
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+//        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
-          Expanded(
-              child: Card(
-                child: ListTile(
-                  title: Text("Our Shepherd"),
-                  subtitle: Text("Our Vision is to be Christ Centered Community to bring people to Jesus and membership in His family, develop them to Christlike maturity, and equip them for their ministry in the church and life mission in the world and build a great city for all people through a gospel movement that brings personal conversion, community formation, social justice and cultural renewal to the world in order to magnify God's name"),
+
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              )
+                elevation: 5.0,
+                child: Container(
+                  width: 500,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    color: HexColor("#ccccff")
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Our Shepherd",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 18.0
+                        ),
+                      ),
+
+                      Text(
+                        "Apostle, Dr. Ebenezer Godbless Adjei leads by example. He is always part of the team and focuses on impacting the life of people he meets",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.black,
+
+                        ),
+                      )
+                    ],
+                  ),
+
+                ),
+              ),
+
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            elevation: 5.0,
+            child: Container(
+              width: 500.0,
+              height: 120.0,
+              decoration: BoxDecoration(
+                color: HexColor("#ccccff"),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                      "Our Pastors",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 18.0
+                    ),
+
+                  ),
+
+                  Text(
+                      "Despite the long hours and emotional intensity of our pastors, they find deep personal fulfilment in following a call to serve others in The Church",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black,
+
+                    ),
+                  )
+                ],
+              ),
+
+            ),
           ),
 
-          Expanded(
-              child: Card(
-                child: ListTile(
-                  title: Text("Our Pastors"),
-                  subtitle: Text("Our Vision is to be Christ Centered Community to bring people to Jesus and membership in His family, develop them to Christlike maturity, and equip them for their ministry in the church and life mission in the world and build a great city for all people through a gospel movement that brings personal conversion, community formation, social justice and cultural renewal to the world in order to magnify God's name"),
-                ),
-              )
-          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            elevation: 5.0,
+            child: Container(
+              width: 500.0,
+              height: 120,
+              decoration: BoxDecoration(
+                color: HexColor("#ccccff")
+              ),
+              child: Column(
+                children: [
+                  Text(
+                      "Our Department",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 18.0
+                    ),
 
-          Expanded(
-              child: Card(
-                child: ListTile(
-                  title: Text("Our Department"),
-                  subtitle: Text("Our Vision is to be Christ Centered Community to bring people to Jesus and membership in His family, develop them to Christlike maturity, and equip them for their ministry in the church and life mission in the world and build a great city for all people through a gospel movement that brings personal conversion, community formation, social justice and cultural renewal to the world in order to magnify God's name"),
-                ),
-              )
-          ),
 
+                  ),
+
+                  Text(
+                      "Despite the long hours and emotional intensity of our pastors, they find deep personal fulfilment in following a call to serve others in The Church",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black,
+
+                    ),
+                  )
+                ],
+              ),
+
+            ),
+          )
         ],
       ),
     );
 
-
-
-
-
-
-
     final footer = Container(
-      height: 100,
+      height: 250,
       width: MediaQuery.of(context).size.width,
-      child: Row(
+      decoration: BoxDecoration(
+          color: HexColor('#e6f0fb')
+      ),
+
+      child: Column(
         children: [
-          Text(
-            "GloryCity Chapel International",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.blue,
+
+          Container(
+            margin: EdgeInsets.only(top: 7.0),
+            child: Center(
+              child: Text(
+                "GloryCity Chapel International",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
+          ),
+
+
+
+          SizedBox(height: 5.0,),
+
+          Container(
+            margin: EdgeInsets.only(top: 4.0),
+            child: Column(
+              children: [
+                Text(
+                  "973-567-7746",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "info@glorycitychapel.com",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+
+                ),
+                Text(
+                  "134 Evergreen pl, Suite 902",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "East Orange, NJ 07018",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+
+              ],
             ),
 
           ),
+
+          Container(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                Text(
+                  "Opening Hours:",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "Sunday 1st Service: 10am - 1pm",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "​​Sunday 2nd Service: 1:15pm - 2:30pm",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+                Text(
+                  "​Friday: 8:30pm - 1:00am",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")
+                  ),
+                ),
+
+              ],
+            ),
+
+          ),
+
+
+
         ],
       ),
     );
+
+
+
+
+
+
+
 
 
 
@@ -278,8 +461,6 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               jumbotron,
               SizedBox(height: 20,),
-              pictures,
-              SizedBox(height: 10,),
               statement,
               SizedBox(height: 10,),
               others,

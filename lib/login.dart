@@ -1,192 +1,175 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:glorycity/round_btn.dart';
 import 'package:glorycity/signup.dart';
-import 'package:glorycity/text_input_fields.dart';
-import 'package:glorycity/constants/theme.dart';
-import 'package:glorycity/constants/globals.dart' as globals;
-import 'package:glorycity/components/sign_up_success.dart';
+//import 'package:get/get.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({required Key key}) : super(key: key);
+class LoginPage extends StatelessWidget {
+//  const Membership({Key? key}) : super(key: key);
 
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: primaryColorC,
-            child: SingleChildScrollView(
-              padding: EdgeInsets.only(
-                bottom: 0.0,
-              ),
-              physics: AlwaysScrollableScrollPhysics(),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 80,
-                  ),
-                  Text(
-                    'Sign In',
-                    style: TextStyle(fontSize: 30, color: textColor),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 50, right: 5, top: 40),
-                      child: Text(
-                        'Email',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: textColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5, right: 5, top: 5),
-                    child: Column(
-                      children: [
-                        CustomTextInput(
-                          3,
-                          'Enter email here',
-                          false,
-                          Icons.person,
-                          key: _formKey,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 50, right: 5, top: 18),
-                      child: Text(
-                        'Password',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: textColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5, right: 5, top: 5),
-                    child: CustomTextInput(
-                      4,
-                      'Enter password here',
-                      true,
-                      Icons.vpn_key,
-                      key: _formKey,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: CustomButton(1, 'Login',key: _formKey,),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    '- OR -',
-                    style: TextStyle(color: Colors.white, fontSize: 11),
-                  ),
-                  Text(
-                    'Sign in with',
-                    style: TextStyle(color: Colors.white, fontSize: 13),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MaterialButton(
-                          minWidth: 10,
-                          color: Colors.white,
-                          onPressed: () {},
-                          child: Image.asset(
-                            'assets/icon/icon_facebook_48.png',
-                            height: 30,
-                            width: 30,
-                          ),
-                          shape: CircleBorder(),
-                        ),
-                        MaterialButton(
-                          minWidth: 10,
-                          color: Colors.white,
-                          onPressed: () {},
-                          child: Image.asset(
-                            'assets/icon/icon_google_48.png',
-                            height: 30,
-                            width: 30,
-                          ),
-                          shape: CircleBorder(),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Don\'t have an account?  ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: textColor,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUpScreen(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: textColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+
+        primarySwatch: Colors.blue,
+      ),
+      home: Login(),
+    );
+  }
+}
+
+class Login extends StatefulWidget {
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    final loginForm = Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(10.0),
+            child: const Text(
+              "GloryCity Chapel",
+              style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 30
               ),
             ),
           ),
-        ),
+
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(10.0),
+            child: Text(
+              "Sign in",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+
+          Container(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+            child: TextField(
+              controller: emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Email"
+              ),
+            ),
+          ),
+
+
+
+          Container(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+            child: TextField(
+              obscureText: true,
+              controller: passwordController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Password"
+              ),
+            ),
+          ),
+
+
+
+
+
+
+
+
+
+          Container(
+              height: 50,
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: ElevatedButton(
+                child: const Text("Login",style: TextStyle(fontSize: 18),),
+                onPressed: (){
+//
+                },
+
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(400,100)
+                )
+
+              )
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Does not have account?",style: TextStyle(fontSize: 17),),
+              TextButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUpScreen()));
+                  },
+                  child: const Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  )
+              )
+            ],
+          ),
+
+
+
+
+
+        ],
       ),
     );
+
+    return Scaffold(
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text("GloryCity"),
+
+      ),
+
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          children: [
+            loginForm,
+          ],
+        ),
+      ),
+
+    );
+
+
+
+
+
+
   }
+
+
+
+
 }
