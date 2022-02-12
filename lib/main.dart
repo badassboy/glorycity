@@ -1,10 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:glorycity/give.dart';
 import 'package:glorycity/login.dart';
 import 'package:glorycity/membership.dart';
@@ -15,52 +9,44 @@ import 'package:video_player/video_player.dart';
 import 'about.dart';
 import 'contactus.dart';
 
-
-
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-//  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-   late VideoPlayerController _player;
+  late VideoPlayerController _player;
 //   String _ulr = "https://www.youtube.com/channel/UCOMRXp2TviMT1wjHubRZW-Q";
-
-
 
   @override
   void initState() {
     super.initState();
-    _player =  VideoPlayerController.asset("assets/audio/failure.mp4")
+    _player = VideoPlayerController.asset("assets/audio/failure.mp4")
       ..initialize().then((_) {
         setState(() {});
         _player.play();
       });
-
   }
 
   @override
@@ -71,95 +57,66 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     final jumbotron = Container(
-    width: MediaQuery.of(context).size.width,
-      height: 120,
-      decoration: BoxDecoration(
-        image: DecorationImage(
+        width: MediaQuery.of(context).size.width,
+        height: 120,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
           fit: BoxFit.fill,
           image: AssetImage("assets/audio/worship.jpg"),
-
-        )
-      ),
-
-      child: Container(
-        child: Text(
-          "Worship with us online",
-          style: TextStyle(
-              fontSize: 22,
-              color: Colors.white,
-              fontWeight: FontWeight.w500
+        )),
+        child: Container(
+          child: const Text(
+            "Worship with us online",
+            style: TextStyle(
+                fontSize: 22, color: Colors.white, fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
+          margin: const EdgeInsets.only(top: 50),
+        ));
 
-        ),
-        margin: EdgeInsets.only(top: 50),
-      )
-
-    );
-
-    final tv = Container(
-      width: MediaQuery.of(context).size.width,
-      height: 250.0,
-      child: Column(
-        children: [
-        Container(
-          height: 180.0,
-          width: MediaQuery.of(context).size.width,
-          child: Center(
-            child: VideoPlayer(_player),
-          ),
-        ),
-
-
-          FloatingActionButton(
-              onPressed: (){
+    final tv = SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 250.0,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 180.0,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: VideoPlayer(_player),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {
                 setState(() {
-                  _player.value.isPlaying
-                      ? _player.pause()
-                      : _player.play();
+                  _player.value.isPlaying ? _player.pause() : _player.play();
                 });
               },
-
-            child: Icon(
-                _player.value.isPlaying ? Icons.pause : Icons.play_arrow
-            ),
-
-
-          )
-        ],
-      )
-
-    );
-
-
+              child: Icon(
+                  _player.value.isPlaying ? Icons.pause : Icons.play_arrow),
+            )
+          ],
+        ));
 
     final church = Container(
       width: MediaQuery.of(context).size.width,
       height: 200,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage("assets/audio/pastor.webp"),
-          )
-      ),
-
-
-
+        fit: BoxFit.fill,
+        image: AssetImage("assets/audio/pastor.webp"),
+      )),
     );
 
     final Services = Container(
       width: MediaQuery.of(context).size.width,
       height: 180,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
       ),
-
-      child:Column(
-//        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-
+      child: Column(
+        children: const [
           Center(
             child: Text(
               "Upcoming Services",
@@ -167,91 +124,72 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontWeight: FontWeight.bold,
                 color: Colors.blue,
                 fontSize: 20.0,
-
               ),
             ),
           ),
-
-
-                Text(
-                    "Every Friday",
-                  style: TextStyle(
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-
-                SizedBox(height: 3.0,),
-
-                Text(
-                  "8:30pm-01:00am",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black,
-                  ),
-                ),
-
-                  SizedBox(height: 10.0,),
-
-
-
-
-
-
-                  Text(
-                    "Sunday 1st Service",
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 3.0,),
-
-                  Text(
-                    "Diplomatic Service 10am-1:00pm",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  ),
-
-                  SizedBox(height: 10.0,),
-
-
-
-
-
-
-
-
-                  Text(
-                    "Sunday 2nd Service",
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-
-                  SizedBox(height: 3.0,),
-
-                  Text(
-                    "Teaching Service 1:15pm - 2:30pm",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  ),
-
-
-
-
-
+          Text(
+            "Every Friday",
+            style: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: 3.0,
+          ),
+          Text(
+            "8:30pm-01:00am",
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Text(
+            "Sunday 1st Service",
+            style: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: 3.0,
+          ),
+          Text(
+            "Diplomatic Service 10am-1:00pm",
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          Text(
+            "Sunday 2nd Service",
+            style: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: 3.0,
+          ),
+          Text(
+            "Teaching Service 1:15pm - 2:30pm",
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+            ),
+          ),
         ],
       ),
     );
@@ -259,64 +197,40 @@ class _MyHomePageState extends State<MyHomePage> {
     final love = Container(
       width: MediaQuery.of(context).size.width,
       height: 230,
-      decoration: BoxDecoration(
-        color: HexColor('#e6f0fb')
-      ),
-      padding: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(color: HexColor('#e6f0fb')),
+      padding: const EdgeInsets.all(15.0),
       child: Column(
         children: [
-
-          Center(
-
-            child:Text(
+          const Center(
+            child: Text(
               "Jesus loves you,\nStay close to To him,\n No Matter Where You Are",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0,
-
               ),
               textAlign: TextAlign.center,
-
-
-
             ),
           ),
-
-
-            Center(
-
-              child: Container(
-
-                child:Text(
-        "GloryCity Chapel International is a Kingdom minded ministry. We believe in The Father,\n The Son and The HolySpirit",
-
+          Center(
+            child: Container(
+              child: const Text(
+                "GloryCity Chapel International is a Kingdom minded ministry. We believe in The Father,\n The Son and The HolySpirit",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                   fontSize: 16.0,
                 ),
-                  textAlign: TextAlign.center,
-
-
-                ),
-
-                padding: EdgeInsets.only(top: 10.0),
-
-
+                textAlign: TextAlign.center,
               ),
-
+              padding: const EdgeInsets.only(top: 10.0),
             ),
-
-
-
+          ),
           Container(
-            padding: EdgeInsets.only(top: 15.0),
+            padding: const EdgeInsets.only(top: 15.0),
             child: ElevatedButton(
-              onPressed: (){
-
-              },
-              child: Text(
+              onPressed: () {},
+              child: const Text(
                 "More About Us",
                 style: TextStyle(
                   color: Colors.white,
@@ -325,18 +239,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: Colors.blue,
                 ),
               ),
-
             ),
           ),
-
-
-
-
-
         ],
       ),
     );
-
 
 //    final firstGallery = Container(
 //      height: 250,
@@ -436,18 +343,15 @@ class _MyHomePageState extends State<MyHomePage> {
 //      ),
 //    );
 
-
-
-
-    final liveWatch = Container(
+    final liveWatch = SizedBox(
       width: MediaQuery.of(context).size.width,
       height: 50,
       child: Center(
         child: ElevatedButton(
-          onPressed: (){
+          onPressed: () {
 //            _launchURL;
           },
-          child: Text(
+          child: const Text(
             "WATCH US LIVE",
             style: TextStyle(
               color: Colors.white,
@@ -457,24 +361,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-
     );
-
-
 
     final footer = Container(
       height: 250,
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: HexColor('#e6f0fb')
-      ),
-
+      decoration: BoxDecoration(color: HexColor('#e6f0fb')),
       child: Column(
         children: [
-
           Container(
-            margin: EdgeInsets.only(top: 7.0),
-            child: Center(
+            margin: const EdgeInsets.only(top: 7.0),
+            child: const Center(
               child: Text(
                 "GloryCity Chapel International",
                 style: TextStyle(
@@ -483,116 +380,89 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontSize: 18.0,
                 ),
               ),
-      ),
+            ),
           ),
-
-
-
-          SizedBox(height: 5.0,),
-
+          const SizedBox(
+            height: 5.0,
+          ),
           Container(
-            margin: EdgeInsets.only(top: 4.0),
-           child: Column(
-             children: [
-               Text(
-                   "973-567-7746",
-                 style: TextStyle(
-                   fontSize: 16.0,
-                   fontWeight: FontWeight.normal,
-                   color: HexColor("#262626")
-                 ),
-               ),
-               Text(
-                   "info@glorycitychapel.com",
-                 style: TextStyle(
-                     fontSize: 16.0,
-                     fontWeight: FontWeight.normal,
-                     color: HexColor("#262626")
-                 ),
-
-               ),
-               Text(
-                   "134 Evergreen pl, Suite 902",
-                 style: TextStyle(
-                     fontSize: 16.0,
-                     fontWeight: FontWeight.normal,
-                     color: HexColor("#262626")
-                 ),
-               ),
-               Text(
-                   "East Orange, NJ 07018",
-                 style: TextStyle(
-                     fontSize: 16.0,
-                     fontWeight: FontWeight.normal,
-                     color: HexColor("#262626")
-                 ),
-               ),
-              
-             ],
-           ),
-
+            margin: const EdgeInsets.only(top: 4.0),
+            child: Column(
+              children: [
+                Text(
+                  "973-567-7746",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")),
+                ),
+                Text(
+                  "info@glorycitychapel.com",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")),
+                ),
+                Text(
+                  "134 Evergreen pl, Suite 902",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")),
+                ),
+                Text(
+                  "East Orange, NJ 07018",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626")),
+                ),
+              ],
+            ),
           ),
-
           Container(
             padding: EdgeInsets.all(10.0),
             child: Column(
               children: [
                 Text(
-                    "Opening Hours:",
+                  "Opening Hours:",
                   style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.normal,
-                      color: HexColor("#262626")
-                  ),
+                      color: HexColor("#262626")),
                 ),
                 Text(
-                    "Sunday 1st Service: 10am - 1pm",
+                  "Sunday 1st Service: 10am - 1pm",
                   style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.normal,
-                      color: HexColor("#262626")
-                  ),
+                      color: HexColor("#262626")),
                 ),
                 Text(
-                    "​​Sunday 2nd Service: 1:15pm - 2:30pm",
+                  "​​Sunday 2nd Service: 1:15pm - 2:30pm",
                   style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.normal,
-                      color: HexColor("#262626")
-                  ),
+                      color: HexColor("#262626")),
                 ),
                 Text(
-                    "​Friday: 8:30pm - 1:00am",
+                  "​Friday: 8:30pm - 1:00am",
                   style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.normal,
-                      color: HexColor("#262626")
-                  ),
+                      color: HexColor("#262626")),
                 ),
-
               ],
             ),
-
           ),
-
-
-
         ],
       ),
     );
 
-
-
-
-
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("GloryCity"),
-
+        title: const Text("GloryCity"),
       ),
-
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -603,121 +473,118 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               child: Text('Drawer Header'),
             ),
-
             ListTile(
               title: const Text('Home'),
               onTap: () {
-               Navigator.push(context,  MaterialPageRoute(builder: (context) => MyApp()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const MyApp()));
               },
             ),
-
             ListTile(
               title: const Text('About'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AboutPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const AboutPage()));
               },
             ),
-
             ListTile(
               title: const Text('Give'),
               onTap: () {
-               Navigator.push(context,  MaterialPageRoute(builder: (context) => Give()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Give()));
               },
             ),
-
-
-
             ListTile(
               title: const Text('Membership'),
               onTap: () {
-               Navigator.push(context,  MaterialPageRoute(builder: (context) => Membership()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Membership()));
               },
             ),
-
             ListTile(
               title: const Text('Login'),
               onTap: () {
-                Navigator.push(context,  MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
               },
             ),
-
-
-
             ListTile(
               title: const Text('Visit Our Website'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
-
             ListTile(
               title: const Text('Recorded Programs'),
               onTap: () {
-                Navigator.push(context,  MaterialPageRoute(builder: (context) => RecordingPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RecordingPage()));
               },
             ),
-
             ListTile(
               title: const Text('Online Radio'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
-
             ListTile(
               title: const Text('Contact Us'),
               onTap: () {
-                Navigator.push(context,  MaterialPageRoute(builder: (context) => ContactPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ContactPage()));
               },
             ),
-
-
           ],
         ),
       ),
-
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(10.0),
-          child:Column(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               jumbotron,
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               tv,
-              SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               church,
-              SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Services,
-              SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               love,
-              SizedBox(height: 10,),
-
+              const SizedBox(
+                height: 10,
+              ),
               liveWatch,
-
-
-              SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               footer,
-
-
             ],
           ),
-
         ),
       ),
-
-      );
-
-
+    );
   }
-
-
 
 //  void _launchURL() async{
 //    if (!await launch(_url)) throw 'Could not launch $_url';
 //  }
 //
 //  launch(String youtube_url) {}
-
 
 }
