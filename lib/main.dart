@@ -42,10 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _player = VideoPlayerController.asset("assets/audio/failure.mp4")
+    _player = VideoPlayerController.network("https://www.youtube.com/watch?v=_4diEjBne4c")
       ..initialize().then((_) {
         setState(() {});
-        _player.play();
+        _player.pause();
       });
   }
 
@@ -196,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final love = Container(
       width: MediaQuery.of(context).size.width,
-      height: 230,
+      height: 250,
       decoration: BoxDecoration(color: HexColor('#e6f0fb')),
       padding: const EdgeInsets.all(15.0),
       child: Column(
@@ -207,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
-                fontSize: 18.0,
+                fontSize: 17.0,
               ),
               textAlign: TextAlign.center,
             ),
@@ -356,7 +356,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 17.0,
+              fontSize: 16.0,
             ),
           ),
         ),

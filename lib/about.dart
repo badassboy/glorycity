@@ -27,8 +27,7 @@ class _AboutPageState extends State<AboutPage> {
       decoration: const BoxDecoration(
           image: DecorationImage(
         fit: BoxFit.fill,
-        image: NetworkImage(
-            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+        image: AssetImage("assets/audio/about.webp"),
       )),
       child: const Text(
         "Watch Church Service Online",
@@ -42,7 +41,7 @@ class _AboutPageState extends State<AboutPage> {
 
     final statement = Container(
       width: MediaQuery.of(context).size.width,
-      height: 450.0,
+      height: 550.0,
       decoration: BoxDecoration(color: HexColor("#ffffff")),
       child: Column(
         children: [
@@ -102,7 +101,7 @@ class _AboutPageState extends State<AboutPage> {
             ),
             elevation: 5.0,
             child: Container(
-              width: 500,
+              width: 400,
               height: 120,
               decoration: BoxDecoration(color: HexColor("#ccccff")),
               child: Column(
@@ -117,7 +116,7 @@ class _AboutPageState extends State<AboutPage> {
                   Text(
                     "Apostle, Dr. Ebenezer Godbless Adjei leads by example. He is always part of the team and focuses on impacting the life of people he meets",
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: 17.0,
                       color: Colors.black,
                     ),
                   )
@@ -148,7 +147,7 @@ class _AboutPageState extends State<AboutPage> {
                   Text(
                     "Despite the long hours and emotional intensity of our pastors, they find deep personal fulfilment in following a call to serve others in The Church",
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: 17.0,
                       color: Colors.black,
                     ),
                   )
@@ -177,7 +176,7 @@ class _AboutPageState extends State<AboutPage> {
                   Text(
                     "Despite the long hours and emotional intensity of our pastors, they find deep personal fulfilment in following a call to serve others in The Church",
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: 17.0,
                       color: Colors.black,
                     ),
                   )
@@ -287,7 +286,7 @@ class _AboutPageState extends State<AboutPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("GloryCity"),
+        title: const Text("GloryCity Chapel"),
       ),
       drawer: Drawer(
         child: ListView(
