@@ -161,9 +161,11 @@ class _ContactPageState extends State<ContactPage> {
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: "Message",
+                alignLabelWithHint: true,
               ),
               maxLines: 8,
               maxLength: 1000,
+
             ),
           ),
           Container(

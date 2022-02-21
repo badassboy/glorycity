@@ -94,7 +94,7 @@ class _RecordingPageState extends State<RecordingPage> {
               title: const Text('About'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AboutPage()));
+                    MaterialPageRoute(builder: (context) =>  AboutPage()));
               },
             ),
             ListTile(

@@ -421,11 +421,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            margin: const EdgeInsets.all(10.0),
             child: Column(
+
               children: [
                 Text(
-                  "Opening Hours:",
+                  "Opening Hours",
                   style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.normal,
@@ -436,21 +437,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.normal,
-                      color: HexColor("#262626")),
+                      color: HexColor("#262626"),
+                    height: 1.5,
+                    fontFamily: "Roboto",
+                  ),
                 ),
                 Text(
-                  "​​Sunday 2nd Service: 1:15pm - 2:30pm",
+                  "Sunday 2nd Service: 1:15pm - 2:30pm",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.normal,
+                      color: HexColor("#262626"),
+                    height: 1.5,
+                  ),
+                ),
+                Text(
+                  "Friday: 8:30pm - 1:00am",
                   style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.normal,
-                      color: HexColor("#262626")),
-                ),
-                Text(
-                  "​Friday: 8:30pm - 1:00am",
-                  style: TextStyle(
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.normal,
-                      color: HexColor("#262626")),
+                      color: HexColor("#262626"),
+                    wordSpacing: 1.0,
+                    height: 1.5,
+                  ),
+
                 ),
               ],
             ),
@@ -484,7 +494,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('About'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AboutPage()));
+                    MaterialPageRoute(builder: (context) =>  AboutPage()));
               },
             ),
             ListTile(
@@ -529,6 +539,12 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('Online Radio'),
               onTap: () {
                 Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text("TV Station"),
+              onTap: (){
+
               },
             ),
             ListTile(

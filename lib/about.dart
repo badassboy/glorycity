@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:glorycity/main.dart';
+import 'package:glorycity/pastors.dart';
 import 'package:glorycity/recorded.dart';
+import 'package:glorycity/sherpherd.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import 'contactus.dart';
@@ -8,19 +11,26 @@ import 'give.dart';
 import 'login.dart';
 import 'membership.dart';
 
-class AboutPage extends StatefulWidget {
-  const AboutPage({Key? key}) : super(key: key);
-
-  @override
-  State<AboutPage> createState() => _AboutPageState();
-}
-
-class _AboutPageState extends State<AboutPage> {
-  // late VideoPlayerController _player;
-//  const String _ulr = "https://www.youtube.com/channel/UCOMRXp2TviMT1wjHubRZW-Q";
-
+class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+   return GetMaterialApp(
+     title: "GloryCity Chapel",
+     theme: ThemeData(
+       primarySwatch: Colors.blue,
+       visualDensity: VisualDensity.adaptivePlatformDensity,
+     ),
+
+     home: About(),
+   );
+  }
+
+}
+
+class About extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+
     final jumbotron = Container(
       width: MediaQuery.of(context).size.width,
       height: 120,
@@ -92,7 +102,7 @@ class _AboutPageState extends State<AboutPage> {
 
     final others = SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: 400,
+      height: 570,
       child: Column(
         children: [
           Card(
@@ -102,24 +112,42 @@ class _AboutPageState extends State<AboutPage> {
             elevation: 5.0,
             child: Container(
               width: 400,
-              height: 120,
+              height: 180,
               decoration: BoxDecoration(color: HexColor("#ccccff")),
               child: Column(
-                children: const [
+                children:  [
+                  SizedBox(height: 10,),
                   Text(
                     "Our Shepherd",
                     style: TextStyle(
                         color: Colors.black,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.bold,
                         fontSize: 18.0),
                   ),
+                  SizedBox(height: 5,),
                   Text(
                     "Apostle, Dr. Ebenezer Godbless Adjei leads by example. He is always part of the team and focuses on impacting the life of people he meets",
                     style: TextStyle(
                       fontSize: 17.0,
                       color: Colors.black,
                     ),
-                  )
+                  ),
+
+                  SizedBox(height: 10,),
+
+                  ElevatedButton(
+                    child:  Text(
+                      "Read More",
+                    ),
+                    onPressed: (){
+                      Get.to(Shepherd());
+                    },
+
+                  ),
+
+
+
+
                 ],
               ),
             ),
@@ -131,17 +159,18 @@ class _AboutPageState extends State<AboutPage> {
             elevation: 5.0,
             child: Container(
               width: 500.0,
-              height: 120.0,
+              height: 180.0,
               decoration: BoxDecoration(
                 color: HexColor("#ccccff"),
               ),
               child: Column(
-                children: const [
+                children:  [
+                  SizedBox(height: 10,),
                   Text(
                     "Our Pastors",
                     style: TextStyle(
                         color: Colors.black,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.bold,
                         fontSize: 18.0),
                   ),
                   Text(
@@ -150,7 +179,16 @@ class _AboutPageState extends State<AboutPage> {
                       fontSize: 17.0,
                       color: Colors.black,
                     ),
+                  ),
+                  SizedBox(height: 10,),
+                  ElevatedButton(
+                    onPressed: (){
+                      Get.to(() =>Pastors());
+                    },
+                    child: Text("Read More"),
                   )
+
+
                 ],
               ),
             ),
@@ -162,23 +200,31 @@ class _AboutPageState extends State<AboutPage> {
             elevation: 5.0,
             child: Container(
               width: 500.0,
-              height: 120,
+              height: 180,
               decoration: BoxDecoration(color: HexColor("#ccccff")),
               child: Column(
-                children: const [
+                children:  [
+                  SizedBox(height: 10,),
                   Text(
                     "Our Department",
                     style: TextStyle(
                         color: Colors.black,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.bold,
                         fontSize: 18.0),
                   ),
+                  SizedBox(height: 10,),
                   Text(
                     "Despite the long hours and emotional intensity of our pastors, they find deep personal fulfilment in following a call to serve others in The Church",
                     style: TextStyle(
                       fontSize: 17.0,
                       color: Colors.black,
                     ),
+                  ),
+                  SizedBox(height: 10,),
+
+                  ElevatedButton(
+                    onPressed: (){},
+                    child: Text("Read More"),
                   )
                 ],
               ),
@@ -288,84 +334,6 @@ class _AboutPageState extends State<AboutPage> {
       appBar: AppBar(
         title: const Text("GloryCity Chapel"),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const MyApp()));
-              },
-            ),
-            ListTile(
-              title: const Text('About'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AboutPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Give'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Give()));
-              },
-            ),
-            ListTile(
-              title: const Text('Membership'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Membership()));
-              },
-            ),
-            ListTile(
-              title: const Text('Login'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Visit Our Website'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Recorded Programs'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RecordingPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Online Radio'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Contact Us'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ContactPage()));
-              },
-            ),
-          ],
-        ),
-      ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(10.0),
@@ -390,5 +358,7 @@ class _AboutPageState extends State<AboutPage> {
         ),
       ),
     );
+
+
   }
 }

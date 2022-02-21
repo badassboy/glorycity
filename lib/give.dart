@@ -40,19 +40,21 @@ class _GiveState extends State<Give> {
 
     final support = SizedBox(
       width: MediaQuery.of(context).size.width,
-      height: 550.0,
+      height: 700.0,
       child: Column(
         children: [
+
           Container(
             decoration: BoxDecoration(color: HexColor("#ccccff")),
-            height: 180,
+            height: 230,
             child: Column(
               children: [
+                SizedBox(height: 10,),
                 Text(
                   "Seed Faith",
                   style: TextStyle(
                     fontSize: 19.0,
-                    color: HexColor("#66ccff"),
+                    color: HexColor("#0066cc"),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -63,28 +65,33 @@ class _GiveState extends State<Give> {
                     color: Colors.black,
                   ),
                 ),
+                SizedBox(height: 10,),
                 const Text(
                     "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it"),
-                ElevatedButton(onPressed: () {}, child: const Text("Donate"))
+                SizedBox(height: 10,),
+                ElevatedButton(onPressed: () {}, child: const Text("Donate With PayPal"))
               ],
             ),
           ),
+
           Container(
             decoration: BoxDecoration(color: HexColor("#e8d1a5")),
-            height: 180,
+            height: 230,
             child: Column(
               children: [
+                SizedBox(height: 10,),
                 Text(
                   "Offering",
                   style: TextStyle(
                     fontSize: 19.0,
-                    color: HexColor("#66ccff"),
+                    color: HexColor("#0066cc"),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const Text(
                   "Lets Support the kingdom",
                 ),
+                SizedBox(height: 10,),
                 const Text(
                   "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it",
                   style: TextStyle(
@@ -92,7 +99,8 @@ class _GiveState extends State<Give> {
                     color: Colors.black,
                   ),
                 ),
-                ElevatedButton(onPressed: () {}, child: const Text("Donate"))
+                SizedBox(height: 10,),
+                ElevatedButton(onPressed: () {}, child: const Text("Donate With PayPal"))
               ],
             ),
           ),
@@ -100,17 +108,19 @@ class _GiveState extends State<Give> {
             decoration: BoxDecoration(
               color: HexColor("#e3a3a3"),
             ),
-            height: 180,
+            height: 230,
             child: Column(
               children: [
+                SizedBox(height: 10,),
                 Text(
                   "Church Project",
                   style: TextStyle(
                     fontSize: 19.0,
-                    color: HexColor("#66ccff"),
+                    color: HexColor("#0066cc"),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                SizedBox(height: 10,),
                 const Text("Together we shall build"),
                 const Text(
                   "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it",
@@ -119,7 +129,8 @@ class _GiveState extends State<Give> {
                     color: Colors.black,
                   ),
                 ),
-                ElevatedButton(onPressed: () {}, child: const Text("Donate"))
+                SizedBox(height: 10,),
+                ElevatedButton(onPressed: () {}, child: const Text("Donate With Paypal"))
               ],
             ),
           ),
@@ -242,7 +253,7 @@ class _GiveState extends State<Give> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: const Text("GloryCity"),
+        title: const Text("GloryCity Chapel"),
       ),
       drawer: Drawer(
         child: ListView(
