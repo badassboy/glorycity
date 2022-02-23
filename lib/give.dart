@@ -43,13 +43,14 @@ class _GiveState extends State<Give> {
       height: 700.0,
       child: Column(
         children: [
-
           Container(
             decoration: BoxDecoration(color: HexColor("#ccccff")),
             height: 230,
             child: Column(
               children: [
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
                   "Seed Faith",
                   style: TextStyle(
@@ -65,21 +66,27 @@ class _GiveState extends State<Give> {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 const Text(
                     "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it"),
-                SizedBox(height: 10,),
-                ElevatedButton(onPressed: () {}, child: const Text("Donate With PayPal"))
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                    onPressed: () {}, child: const Text("Donate With PayPal"))
               ],
             ),
           ),
-
           Container(
             decoration: BoxDecoration(color: HexColor("#e8d1a5")),
             height: 230,
             child: Column(
               children: [
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
                   "Offering",
                   style: TextStyle(
@@ -91,7 +98,9 @@ class _GiveState extends State<Give> {
                 const Text(
                   "Lets Support the kingdom",
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 const Text(
                   "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it",
                   style: TextStyle(
@@ -99,8 +108,11 @@ class _GiveState extends State<Give> {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 10,),
-                ElevatedButton(onPressed: () {}, child: const Text("Donate With PayPal"))
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                    onPressed: () {}, child: const Text("Donate With PayPal"))
               ],
             ),
           ),
@@ -111,7 +123,9 @@ class _GiveState extends State<Give> {
             height: 230,
             child: Column(
               children: [
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
                   "Church Project",
                   style: TextStyle(
@@ -120,7 +134,9 @@ class _GiveState extends State<Give> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 const Text("Together we shall build"),
                 const Text(
                   "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven, and pour you out a blessing, that there shall not be room enough to receive it",
@@ -129,8 +145,11 @@ class _GiveState extends State<Give> {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 10,),
-                ElevatedButton(onPressed: () {}, child: const Text("Donate With Paypal"))
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                    onPressed: () {}, child: const Text("Donate With Paypal"))
               ],
             ),
           ),
@@ -268,15 +287,15 @@ class _GiveState extends State<Give> {
             ListTile(
               title: const Text('Home'),
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyApp()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const MyApp()));
               },
             ),
             ListTile(
               title: const Text('About'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AboutPage()));
+                    MaterialPageRoute(builder: (context) => const AboutPage()));
               },
             ),
             ListTile(

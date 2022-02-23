@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glorycity/main.dart';
 import 'package:glorycity/pastors.dart';
-import 'package:glorycity/recorded.dart';
 import 'package:glorycity/sherpherd.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'contactus.dart';
-import 'give.dart';
-import 'login.dart';
-import 'membership.dart';
-
 class AboutPage extends StatelessWidget {
+  const AboutPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-   return GetMaterialApp(
-     title: "GloryCity Chapel",
-     theme: ThemeData(
-       primarySwatch: Colors.blue,
-       visualDensity: VisualDensity.adaptivePlatformDensity,
-     ),
-
-     home: About(),
-   );
+    return GetMaterialApp(
+      title: "GloryCity Chapel",
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: const About(),
+    );
   }
-
 }
 
 class About extends StatelessWidget {
+  const About({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
     final jumbotron = Container(
       width: MediaQuery.of(context).size.width,
       height: 120,
@@ -115,39 +109,38 @@ class About extends StatelessWidget {
               height: 180,
               decoration: BoxDecoration(color: HexColor("#ccccff")),
               child: Column(
-                children:  [
-                  SizedBox(height: 10,),
-                  Text(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
                     "Our Shepherd",
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0),
                   ),
-                  SizedBox(height: 5,),
-                  Text(
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const Text(
                     "Apostle, Dr. Ebenezer Godbless Adjei leads by example. He is always part of the team and focuses on impacting the life of people he meets",
                     style: TextStyle(
                       fontSize: 17.0,
                       color: Colors.black,
                     ),
                   ),
-
-                  SizedBox(height: 10,),
-
+                  const SizedBox(
+                    height: 10,
+                  ),
                   ElevatedButton(
-                    child:  Text(
+                    child: const Text(
                       "Read More",
                     ),
-                    onPressed: (){
-                      Get.to(Shepherd());
+                    onPressed: () {
+                      Get.to(const Shepherd());
                     },
-
                   ),
-
-
-
-
                 ],
               ),
             ),
@@ -164,31 +157,33 @@ class About extends StatelessWidget {
                 color: HexColor("#ccccff"),
               ),
               child: Column(
-                children:  [
-                  SizedBox(height: 10,),
-                  Text(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
                     "Our Pastors",
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0),
                   ),
-                  Text(
+                  const Text(
                     "Despite the long hours and emotional intensity of our pastors, they find deep personal fulfilment in following a call to serve others in The Church",
                     style: TextStyle(
                       fontSize: 17.0,
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   ElevatedButton(
-                    onPressed: (){
-                      Get.to(() =>Pastors());
+                    onPressed: () {
+                      Get.to(() => const Pastors());
                     },
-                    child: Text("Read More"),
+                    child: const Text("Read More"),
                   )
-
-
                 ],
               ),
             ),
@@ -203,28 +198,33 @@ class About extends StatelessWidget {
               height: 180,
               decoration: BoxDecoration(color: HexColor("#ccccff")),
               child: Column(
-                children:  [
-                  SizedBox(height: 10,),
-                  Text(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
                     "Our Department",
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0),
                   ),
-                  SizedBox(height: 10,),
-                  Text(
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
                     "Despite the long hours and emotional intensity of our pastors, they find deep personal fulfilment in following a call to serve others in The Church",
                     style: TextStyle(
                       fontSize: 17.0,
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(height: 10,),
-
+                  const SizedBox(
+                    height: 10,
+                  ),
                   ElevatedButton(
-                    onPressed: (){},
-                    child: Text("Read More"),
+                    onPressed: () {},
+                    child: const Text("Read More"),
                   )
                 ],
               ),
@@ -358,7 +358,5 @@ class About extends StatelessWidget {
         ),
       ),
     );
-
-
   }
 }

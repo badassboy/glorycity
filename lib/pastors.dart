@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glorycity/main.dart';
-import 'package:glorycity/recorded.dart';
-import 'package:glorycity/sherpherd.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class Pastors extends StatelessWidget {
-  // const Shepherd({Key? key}) : super(key: key);
+  const Pastors({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -15,44 +13,40 @@ class Pastors extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-
-      home: Pastor(),
+      home: const Pastor(),
     );
   }
-
 }
 
 class Pastor extends StatelessWidget {
+  const Pastor({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
-    final gallery = Container(
-      width: MediaQuery.of(context).size.width,
-      height: 120,
-        child:  Column(
+    final gallery = SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 120,
+        child: Column(
           children: [
             Card(
               child: Column(
                 children: [
-                  ListTile(
+                  const ListTile(
                     title: Text("Flutter Card Example"),
                     subtitle: Text("testing"),
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/audio/overseer.webp"),
-                        fit: BoxFit.fill,
-                      )
-                    ),
-
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage("assets/audio/overseer.webp"),
+                      fit: BoxFit.fill,
+                    )),
                   )
                 ],
               ),
             )
           ],
-        )
-    );
+        ));
 
     final footer = Container(
       height: 250,
@@ -161,14 +155,14 @@ class Pastor extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               gallery,
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               footer,
             ],
           ),
         ),
       ),
     );
-
-
   }
 }

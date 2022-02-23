@@ -21,7 +21,6 @@ class _LoginPageState extends State<LoginPage> {
         key: _formKey,
         child: Column(
           children: [
-
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10.0),
@@ -46,12 +45,10 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: TextField(
-
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Email"),
-
               ),
             ),
             Container(
@@ -86,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SignUpScreen()));
+                              builder: (context) => const SignUpScreen()));
                     },
                     child: const Text(
                       "Sign Up",
@@ -96,12 +93,8 @@ class _LoginPageState extends State<LoginPage> {
                     ))
               ],
             ),
-
           ],
         ),
-
-
-
       ),
     );
 

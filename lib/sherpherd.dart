@@ -1,14 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import 'package:glorycity/main.dart';
-import 'package:glorycity/recorded.dart';
-import 'package:glorycity/sherpherd.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class Shepherd extends StatelessWidget {
-  // const Shepherd({Key? key}) : super(key: key);
+  const Shepherd({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,28 +13,26 @@ class Shepherd extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-
-      home: OverSeer(),
+      home: const OverSeer(),
     );
   }
-
 }
 
 class OverSeer extends StatelessWidget {
+  const OverSeer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
     final jumbotron = Container(
       width: MediaQuery.of(context).size.width,
       height: 120,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.black,
       ),
-
       child: Card(
         child: ListTile(
           title: Text(
-              "DR.EBENEZER GOBLESS ADJEI",
+            "DR.EBENEZER GOBLESS ADJEI",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 25,
@@ -49,15 +42,12 @@ class OverSeer extends StatelessWidget {
           subtitle: Text(
             "General OverSeer,GCCI",
             style: TextStyle(
-              color: HexColor("#ffffff"),
-              fontWeight: FontWeight.normal,
-              fontSize: 15
-            ),
+                color: HexColor("#ffffff"),
+                fontWeight: FontWeight.normal,
+                fontSize: 15),
           ),
         ),
       ),
-
-
     );
 
     final statement = Container(
@@ -71,17 +61,16 @@ class OverSeer extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 250,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/audio/overseer.webp"),
-                fit: BoxFit.fill,
-              )
-            ),
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage("assets/audio/overseer.webp"),
+              fit: BoxFit.fill,
+            )),
           ),
-
-          SizedBox(height: 10,),
-
-          Container(
+          const SizedBox(
+            height: 10,
+          ),
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 300,
             child: Column(
@@ -93,15 +82,16 @@ class OverSeer extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 10,),
-                Text(
-                    "Prophet Dr. Ebenezer Godbless Adjei is a native of Ghana and married to a beautiful woman Rev. Naomi Godbless Adjei and blessed with 3  children. He had his first degree from Kwame Nkrumah university of science and Technology in Kumasi – Ghana. As a growing young minister who was so much passionate about lost souls, he founded The Young Missionaries. It was a ministry that reaches out to institutions and in partnership with Churches travel to villages with soul winning ambition. He handed over this non denomination ministry to his right hand when the Lord instructed him to do so.",
-                  style: TextStyle(
-                    color: HexColor("#0d0d0d"),
-                    fontSize: 16
-                  ),
+                const SizedBox(
+                  height: 10,
                 ),
-                SizedBox(height: 10,),
+                Text(
+                  "Prophet Dr. Ebenezer Godbless Adjei is a native of Ghana and married to a beautiful woman Rev. Naomi Godbless Adjei and blessed with 3  children. He had his first degree from Kwame Nkrumah university of science and Technology in Kumasi – Ghana. As a growing young minister who was so much passionate about lost souls, he founded The Young Missionaries. It was a ministry that reaches out to institutions and in partnership with Churches travel to villages with soul winning ambition. He handed over this non denomination ministry to his right hand when the Lord instructed him to do so.",
+                  style: TextStyle(color: HexColor("#0d0d0d"), fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
                   "Prophet Dr. Godbless, holds BA degree in Economics, Doctorate in Divinity and Bible studies. He is a Prophet and Teacher by calling and ministers the word of God and declares the mind of God with great passion and compassion yet without fear or favor. He is motivated by love and is very accessible to all who need His services for the cause of Christ and Humanity. In Character, Ebenezer Godbless Adjei is a godly man who fears the Lord and walks in His statues and principles. He doesn’t play with his integrity, loyalty to THE CHURCH and considers all opinions in his activities. He believes in being a team player like Jesus and uses the managing system rather than the boss system of leadership",
                   style: TextStyle(
@@ -109,15 +99,17 @@ class OverSeer extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
-                    "He is a vessel in the hand of God being used to impact this generation. He is the author of LIFE BY THE PILLAR OF GIVING, LETS DISCUSS SEX, UNDERSTANDING THE PROPHETIC and several others. He also believes the world belongs to us because God gave us dominion over it. With his background as a business student, he believes in doing things for yourself rather than depending on others. He is the Chief Executive Officer of ELYON FARMS, AFIANS ESTATE, GODBLESS HOSTEL among the others",
+                  "He is a vessel in the hand of God being used to impact this generation. He is the author of LIFE BY THE PILLAR OF GIVING, LETS DISCUSS SEX, UNDERSTANDING THE PROPHETIC and several others. He also believes the world belongs to us because God gave us dominion over it. With his background as a business student, he believes in doing things for yourself rather than depending on others. He is the Chief Executive Officer of ELYON FARMS, AFIANS ESTATE, GODBLESS HOSTEL among the others",
                   style: TextStyle(
                     color: HexColor("#0d0d0d"),
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height:10),
+                const SizedBox(height: 10),
                 Text(
                   "He has an ambition of seeing the rise of a new generation who will not only walk away from sin but also enjoy the great things the Lord has blessed as here on earth",
                   style: TextStyle(
@@ -230,7 +222,7 @@ class OverSeer extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:  Text("GloryCity Chapel"),
+        title: const Text("GloryCity Chapel"),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -239,16 +231,18 @@ class OverSeer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               jumbotron,
-               SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               statement,
-              SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               footer,
             ],
           ),
         ),
       ),
     );
-
-
   }
 }

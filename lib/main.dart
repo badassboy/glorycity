@@ -42,7 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _player = VideoPlayerController.network("https://www.youtube.com/watch?v=_4diEjBne4c")
+    _player = VideoPlayerController.network(
+        "https://www.youtube.com/watch?v=_4diEjBne4c")
       ..initialize().then((_) {
         setState(() {});
         _player.pause();
@@ -423,7 +424,6 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             margin: const EdgeInsets.all(10.0),
             child: Column(
-
               children: [
                 Text(
                   "Opening Hours",
@@ -435,9 +435,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text(
                   "Sunday 1st Service: 10am - 1pm",
                   style: TextStyle(
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.normal,
-                      color: HexColor("#262626"),
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.normal,
+                    color: HexColor("#262626"),
                     height: 1.5,
                     fontFamily: "Roboto",
                   ),
@@ -445,22 +445,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text(
                   "Sunday 2nd Service: 1:15pm - 2:30pm",
                   style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
-                      color: HexColor("#262626"),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                    color: HexColor("#262626"),
                     height: 1.5,
                   ),
                 ),
                 Text(
                   "Friday: 8:30pm - 1:00am",
                   style: TextStyle(
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.normal,
-                      color: HexColor("#262626"),
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.normal,
+                    color: HexColor("#262626"),
                     wordSpacing: 1.0,
                     height: 1.5,
                   ),
-
                 ),
               ],
             ),
@@ -494,7 +493,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('About'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) =>  AboutPage()));
+                    MaterialPageRoute(builder: (context) => const AboutPage()));
               },
             ),
             ListTile(
@@ -543,9 +542,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text("TV Station"),
-              onTap: (){
-
-              },
+              onTap: () {},
             ),
             ListTile(
               title: const Text('Contact Us'),
