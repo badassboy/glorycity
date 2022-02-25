@@ -73,83 +73,9 @@ class _RecordingPageState extends State<RecordingPage> {
       appBar: AppBar(
         title: const Text("GloryCity Radio"),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const MyApp()));
-              },
-            ),
-            ListTile(
-              title: const Text('About'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AboutPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Give'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Give()));
-              },
-            ),
-            ListTile(
-              title: const Text('Membership'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Membership()));
-              },
-            ),
-            ListTile(
-              title: const Text('Login'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Visit Our Website'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Recorded Programs'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Online Radio'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Contact Us'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ContactPage()));
-              },
-            ),
-          ],
-        ),
-      ),
+
+
+
       body: Center(
         child: Container(
           decoration: const BoxDecoration(

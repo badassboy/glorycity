@@ -493,7 +493,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('About'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AboutPage()));
+                    MaterialPageRoute(builder: (context) =>  AboutPage()));
               },
             ),
             ListTile(
@@ -509,7 +509,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const Membership()));
+                        builder: (context) =>  Membership()));
               },
             ),
             ListTile(

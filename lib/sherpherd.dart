@@ -2,24 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class Shepherd extends StatelessWidget {
-  const Shepherd({Key? key}) : super(key: key);
-
+class Shepherd extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: "GloryCity Chapel",
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const OverSeer(),
-    );
-  }
+  State<Shepherd> createState() => OverSeer();
+  // const Shepherd({Key? key}) : super(key: key);
+
 }
 
-class OverSeer extends StatelessWidget {
-  const OverSeer({Key? key}) : super(key: key);
+class OverSeer extends State<Shepherd> {
+  // const OverSeer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +43,7 @@ class OverSeer extends StatelessWidget {
 
     final statement = Container(
       width: MediaQuery.of(context).size.width,
-      height: 400,
+      height: 960,
       decoration: BoxDecoration(
         color: HexColor("#ffffff"),
       ),
@@ -70,51 +61,63 @@ class OverSeer extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
+
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 300,
+            height: 700,
             child: Column(
               children: [
-                Text(
-                  "APOSTLE DR. EBENEZER GODBLESS ADJEI IS THE FOUNDER AND GENERAL OVERSEER OF GLORYCITY CHAPEL INTERNATIONAL (THE CHURCH) with branches in New Jersey, South Africa, multiple in Ghana and still counting to its branches.",
-                  style: TextStyle(
-                    color: HexColor("#0d0d0d"),
-                    fontSize: 16,
+                Container(
+
+                  child:Text(
+                    "APOSTLE DR. EBENEZER GODBLESS ADJEI IS THE FOUNDER AND GENERAL OVERSEER OF GLORYCITY CHAPEL INTERNATIONAL (THE CHURCH) with branches in New Jersey, South Africa, multiple in Ghana and still counting to its branches.",
+                    style: TextStyle(
+                      color: HexColor("#0d0d0d"),
+                      fontSize: 18,
+                    ),
                   ),
+                  height: 100,
+
                 ),
+
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "Prophet Dr. Ebenezer Godbless Adjei is a native of Ghana and married to a beautiful woman Rev. Naomi Godbless Adjei and blessed with 3  children. He had his first degree from Kwame Nkrumah university of science and Technology in Kumasi – Ghana. As a growing young minister who was so much passionate about lost souls, he founded The Young Missionaries. It was a ministry that reaches out to institutions and in partnership with Churches travel to villages with soul winning ambition. He handed over this non denomination ministry to his right hand when the Lord instructed him to do so.",
-                  style: TextStyle(color: HexColor("#0d0d0d"), fontSize: 16),
+
+                Container(
+                  child: Text(
+                    "Prophet Dr. Ebenezer Godbless Adjei is a native of Ghana and married to a beautiful woman Rev. Naomi Godbless Adjei and blessed with 3  children. He had his first degree from Kwame Nkrumah university of science and Technology in Kumasi – Ghana. As a growing young minister who was so much passionate about lost souls, he founded The Young Missionaries. It was a ministry that reaches out to institutions and in partnership with Churches travel to villages with soul winning ambition. He handed over this non denomination ministry to his right hand when the Lord instructed him to do so.",
+                    style: TextStyle(color: HexColor("#0d0d0d"), fontSize: 18),
+                  ),
                 ),
+
+                const SizedBox(
+                  height: 15,
+                ),
+
+                Container(
+                  child:  Text(
+                    "Prophet Dr. Godbless, holds BA degree in Economics, Doctorate in Divinity and Bible studies. He is a Prophet and Teacher by calling and ministers the word of God and declares the mind of God with great passion and compassion yet without fear or favor. He is motivated by love and is very accessible to all who need His services for the cause of Christ and Humanity. In Character, Ebenezer Godbless Adjei is a godly man who fears the Lord and walks in His statues and principles. He doesn’t play with his integrity, loyalty to THE CHURCH and considers all opinions in his activities. He believes in being a team player like Jesus and uses the managing system rather than the boss system of leadership",
+                    style: TextStyle(
+                      color: HexColor("#0d0d0d"),
+                      fontSize: 18,
+                    ),
+                  ),
+                  height: 150,
+                ),
+
                 const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "Prophet Dr. Godbless, holds BA degree in Economics, Doctorate in Divinity and Bible studies. He is a Prophet and Teacher by calling and ministers the word of God and declares the mind of God with great passion and compassion yet without fear or favor. He is motivated by love and is very accessible to all who need His services for the cause of Christ and Humanity. In Character, Ebenezer Godbless Adjei is a godly man who fears the Lord and walks in His statues and principles. He doesn’t play with his integrity, loyalty to THE CHURCH and considers all opinions in his activities. He believes in being a team player like Jesus and uses the managing system rather than the boss system of leadership",
-                  style: TextStyle(
-                    color: HexColor("#0d0d0d"),
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "He is a vessel in the hand of God being used to impact this generation. He is the author of LIFE BY THE PILLAR OF GIVING, LETS DISCUSS SEX, UNDERSTANDING THE PROPHETIC and several others. He also believes the world belongs to us because God gave us dominion over it. With his background as a business student, he believes in doing things for yourself rather than depending on others. He is the Chief Executive Officer of ELYON FARMS, AFIANS ESTATE, GODBLESS HOSTEL among the others",
-                  style: TextStyle(
-                    color: HexColor("#0d0d0d"),
-                    fontSize: 16,
-                  ),
-                ),
+
+
+
                 const SizedBox(height: 10),
                 Text(
                   "He has an ambition of seeing the rise of a new generation who will not only walk away from sin but also enjoy the great things the Lord has blessed as here on earth",
                   style: TextStyle(
                     color: HexColor("#0d0d0d"),
-                    fontSize: 16,
+                    fontSize: 18,
                   ),
                 )
               ],

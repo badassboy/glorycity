@@ -39,6 +39,7 @@ dependencies:
   hexcolor: ^2.0.5
   get: ^4.6.1
   audioplayers: ^0.20.1
+  getwidget: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,13 @@ flutter:
     - assets/audio/radio.jpeg
     - assets/audio/about.webp
     - assets/audio/overseer.webp
+    - assets/audio/duncan.webp
+    - assets/audio/cyril.webp
+    - assets/audio/stephen.webp
+    - assets/audio/rosalyn.webp
+    - assets/audio/frederica.webp
+    - assets/audio/pokuaa.webp
+
 
 
 

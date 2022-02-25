@@ -8,7 +8,7 @@ import 'login.dart';
 import 'main.dart';
 
 class Membership extends StatefulWidget {
-  const Membership({Key? key}) : super(key: key);
+  // const Membership({Key? key}) : super(key: key);
   @override
   State<Membership> createState() => _MembershipState();
 }
@@ -21,7 +21,7 @@ class _MembershipState extends State<Membership> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -133,86 +133,20 @@ class _MembershipState extends State<Membership> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const MyApp()));
-              },
-            ),
-            ListTile(
-              title: const Text('About'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AboutPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Give'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Give()));
-              },
-            ),
-            ListTile(
-              title: const Text('Membership'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Membership()));
-              },
-            ),
-            ListTile(
-              title: const Text('Login'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Visit Our Website'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Recorded Programs'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RecordingPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Online Radio'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Contact Us'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ContactPage()));
-              },
-            ),
-          ],
-        ),
-      ),
+
     );
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+     ageController.dispose();
+     emailController.dispose();
+     phoneController.dispose();
+     addressController.dispose();
+     cityController.dispose();
+    super.dispose();
+
   }
 }

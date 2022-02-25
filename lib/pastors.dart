@@ -1,53 +1,206 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/components/card/gf_card.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class Pastors extends StatelessWidget {
-  const Pastors({Key? key}) : super(key: key);
-
+class Pastors extends StatefulWidget {
+  // const Pastors({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: "GloryCity Chapel",
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const Pastor(),
-    );
-  }
+  State<Pastors> createState() => Pastor();
+
 }
 
-class Pastor extends StatelessWidget {
-  const Pastor({Key? key}) : super(key: key);
+class Pastor extends State<Pastors> {
+  // const Pastor({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final gallery = SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: 120,
+        height: 3200,
         child: Column(
           children: [
+
             Card(
+              clipBehavior: Clip.antiAlias,
               child: Column(
                 children: [
-                  const ListTile(
-                    title: Text("Flutter Card Example"),
-                    subtitle: Text("testing"),
+                  ListTile(
+
+                    title: const Text(
+                        'Johnny Duncan',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Prophet',
+                      style: TextStyle(
+                          color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
-                  Container(
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage("assets/audio/overseer.webp"),
-                      fit: BoxFit.fill,
-                    )),
-                  )
+
+
+                  Image.asset('assets/audio/duncan.webp'),
+
                 ],
               ),
-            )
+            ),
+
+            SizedBox(height: 10,),
+
+            Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+
+                    title:  Text(
+                        'Cyril Cyriaano',
+                      style: TextStyle(
+                        color: HexColor("#000000"),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Prophet',
+                      style: TextStyle(
+                          color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ),
+
+
+                  Image.asset('assets/audio/cyril.webp'),
+
+                ],
+              ),
+            ),
+
+            SizedBox(height: 10,),
+            Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    title:  Text(
+                        'Stephen Quartey',
+                      style: TextStyle(
+                        color: HexColor("#000000"),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Prophet',
+                      style: TextStyle(
+                          color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Image.asset('assets/audio/stephen.webp'),
+                ],
+              ),
+            ),
+            SizedBox(height: 10,),
+
+            Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    title:  Text(
+                      'Rosyln Ohene Sakyi',
+                      style: TextStyle(
+                        color: HexColor("#000000"),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Lady Reverend',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Image.asset('assets/audio/rosalyn.webp'),
+                ],
+              ),
+            ),
+            SizedBox(height: 10,),
+            Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    title:  Text(
+                      'Nana Pokuaa Cyriaano',
+                      style: TextStyle(
+                        color: HexColor("#000000"),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Lady Reverend',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Image.asset('assets/audio/pokuaa.webp'),
+                ],
+              ),
+            ),
+            SizedBox(height: 10,),
+            Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    title:  Text(
+                      'Frederica Nana Tsuba Ankrah',
+                      style: TextStyle(
+                        color: HexColor("#000000"),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Lady Reverend',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Image.asset('assets/audio/frederica.webp'),
+                ],
+              ),
+            ),
+
           ],
         ));
-
     final footer = Container(
       height: 250,
       width: MediaQuery.of(context).size.width,

@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:glorycity/departments.dart';
 import 'package:glorycity/pastors.dart';
 import 'package:glorycity/sherpherd.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class AboutPage extends StatelessWidget {
-  const AboutPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: "GloryCity Chapel",
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const About(),
-    );
+   return GetMaterialApp(
+     home: About(),
+     theme: ThemeData(
+       primarySwatch: Colors.blue,
+       visualDensity: VisualDensity.adaptivePlatformDensity,
+     ),
+   );
   }
+
+
 }
 
 class About extends StatelessWidget {
-  const About({Key? key}) : super(key: key);
+  // const About({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +138,7 @@ class About extends StatelessWidget {
                       "Read More",
                     ),
                     onPressed: () {
-                      Get.to(const Shepherd());
+                      Get.to(Shepherd());
                     },
                   ),
                 ],
@@ -180,7 +180,7 @@ class About extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Get.to(() => const Pastors());
+                      Get.to(() =>  Pastors());
                     },
                     child: const Text("Read More"),
                   )
@@ -223,7 +223,9 @@ class About extends StatelessWidget {
                     height: 10,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(Department());
+                    },
                     child: const Text("Read More"),
                   )
                 ],
