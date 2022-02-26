@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:glorycity/recorded.dart';
 
-import 'about.dart';
-import 'contactus.dart';
-import 'give.dart';
-import 'login.dart';
-import 'main.dart';
+import '../about.dart';
+import '../contactus.dart';
+import '../give.dart';
+import '../Login/LoginPage.dart';
+import '../main.dart';
 
 class Membership extends StatefulWidget {
   // const Membership({Key? key}) : super(key: key);

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:glorycity/give.dart';
-import 'package:glorycity/login.dart';
-import 'package:glorycity/membership.dart';
+import 'package:glorycity/Login/LoginPage.dart';
+import 'package:glorycity/membership/membership.dart';
 import 'package:glorycity/recorded.dart';
+import 'package:glorycity/social/application/social.dart';
+import 'package:glorycity/social/media/media.dart';
+import 'package:glorycity/website/webController.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:video_player/video_player.dart';
 
@@ -10,11 +14,17 @@ import 'about.dart';
 import 'contactus.dart';
 
 void main() {
-  runApp(const MyApp());
+  initialize();
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+void initialize(){
+//  inject social controller
+  Get.lazyPut(() => BaseController(Get.put(UserService())));
+}
+
+class MyApp extends GetWidget<BaseController> {
+  // const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +46,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //Injecting Contoller
+  final _controller = Get.put(SocialController());
+  final _webContoller = Get.put(WebController());
+
   late VideoPlayerController _player;
 //   String _ulr = "https://www.youtube.com/channel/UCOMRXp2TviMT1wjHubRZW-Q";
 
@@ -246,103 +260,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-//    final firstGallery = Container(
-//      height: 250,
-//      width: MediaQuery.of(context).size.width,
-//      child: Row(
-////        mainAxisAlignment: MainAxisAlignment.end,
-//        children: [
-//
-//          Flexible(
-//            child: Container(
-//              width: 200,
-//              height: 200,
-//              decoration: BoxDecoration(
-//                image: DecorationImage(
-//                    image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-//                  fit: BoxFit.fill,
-//                ),
-//              ),
-//
-//
-//
-//              child: Column(
-//                children: [
-//                  Text(
-//                    "Watch Us Live",
-//                    style: TextStyle(
-//                      color: Colors.white,
-//                      fontWeight: FontWeight.bold,
-//                      fontSize: 20.0,
-//                    ),
-//                  ),
-//
-//                  Text(
-//                    "hello world",
-//                    style: TextStyle(
-//                      color: Colors.white,
-//                      fontSize: 15.0,
-//                    ),
-//                  ),
-//
-//                  ElevatedButton(
-//                      onPressed: (){},
-//                      child: Text("Watch Now")
-//                  )
-//                ],
-//              ),
-//            ),
-//          ),
-//
-//          Flexible(
-//            child: Container(
-//
-//              decoration: BoxDecoration(
-//                image: DecorationImage(
-//                  fit: BoxFit.fill,
-//                    image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
-//
-//                ),
-//              ),
-//              width: 200,
-//              height: 200,
-//
-//
-//
-//              child: Column(
-//                children: [
-//                  Text(
-//                    "PrayerLine",
-//                    style: TextStyle(
-//                      color: Colors.white,
-//                      fontWeight: FontWeight.bold,
-//                      fontSize: 20.0,
-//                    ),
-//                  ),
-//
-//                  Text(
-//                    "hello world",
-//                    style: TextStyle(
-//                      color: Colors.white,
-//                      fontSize: 15.0,
-//                    ),
-//                  ),
-//
-//                  ElevatedButton(
-//                      onPressed: (){},
-//                      child: Text("Watch Now")
-//                  )
-//                ],
-//              ),
-//            ) ,
-//          ),
-//
-//
-//
-//
-//        ],
-//      ),
-//    );
+
 
     final liveWatch = SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -486,7 +404,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('Home'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const MyApp()));
+                    MaterialPageRoute(builder: (context) => MyApp()));
               },
             ),
             ListTile(
@@ -522,7 +440,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('Visit Our Website'),
               onTap: () {
-                Navigator.pop(context);
+                visitWebsite();
               },
             ),
             ListTile(
@@ -540,10 +458,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pop(context);
               },
             ),
-            ListTile(
-              title: const Text("TV Station"),
-              onTap: () {},
-            ),
+
+                ListTile(
+                  title: const Text("TV station"),
+                  onTap: (){
+                    GoYoutube();
+                  },
+                ),
+
+
+            // ListTile(
+            //   title: const Text("TV Station"),
+            //   onTap: () {},
+            // ),
             ListTile(
               title: const Text('Contact Us'),
               onTap: () {
@@ -594,10 +521,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-//  void _launchURL() async{
-//    if (!await launch(_url)) throw 'Could not launch $_url';
-//  }
-//
-//  launch(String youtube_url) {}
+  void GoYoutube() {
+    String url = "https://www.youtube.com/channel/UCOMRXp2TviMT1wjHubRZW-Q";
+    _controller.visitYoutube(url);
+  }
+
+  void visitWebsite() {
+    String url = "https://www.glorycitychapel.com";
+    _webContoller.visitWebsite(url);
+
+  }
+
+
 
 }

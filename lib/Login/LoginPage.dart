@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glorycity/signup.dart';
+import 'package:glorycity/Register/signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

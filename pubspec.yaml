@@ -40,6 +40,8 @@ dependencies:
   get: ^4.6.1
   audioplayers: ^0.20.1
   getwidget: ^2.0.5
+  equatable: ^2.0.3
+  html: ^0.15.0
 
 dev_dependencies:
   flutter_test:

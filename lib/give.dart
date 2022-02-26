@@ -4,9 +4,9 @@ import 'package:hexcolor/hexcolor.dart';
 
 import 'about.dart';
 import 'contactus.dart';
-import 'login.dart';
+import 'Login/LoginPage.dart';
 import 'main.dart';
-import 'membership.dart';
+import 'membership/membership.dart';
 
 class Give extends StatefulWidget {
   const Give({Key? key}) : super(key: key);

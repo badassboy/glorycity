@@ -7,9 +7,9 @@ import 'package:flutter/services.dart';
 import 'about.dart';
 import 'contactus.dart';
 import 'give.dart';
-import 'login.dart';
+import 'Login/LoginPage.dart';
 import 'main.dart';
-import 'membership.dart';
+import 'membership/membership.dart';
 
 class RecordingPage extends StatefulWidget {
   const RecordingPage({Key? key}) : super(key: key);
