@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:glorycity/OnlineRadio.dart';
 import 'package:glorycity/give.dart';
 import 'package:glorycity/Login/LoginPage.dart';
 import 'package:glorycity/membership/membership.dart';
@@ -268,7 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Center(
         child: ElevatedButton(
           onPressed: () {
-//            _launchURL;
+           watchFacebook();
           },
           child: const Text(
             "WATCH US LIVE",
@@ -455,7 +456,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('Online Radio'),
               onTap: () {
-                Navigator.pop(context);
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => OnlineRadio()));
               },
             ),
 
@@ -523,6 +528,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void GoYoutube() {
     String url = "https://www.youtube.com/channel/UCOMRXp2TviMT1wjHubRZW-Q";
+    // String url = "https://www.youtube.com";
     _controller.visitYoutube(url);
   }
 
@@ -530,6 +536,11 @@ class _MyHomePageState extends State<MyHomePage> {
     String url = "https://www.glorycitychapel.com";
     _webContoller.visitWebsite(url);
 
+  }
+
+  void watchFacebook() {
+    String url = "https://web.facebook.com/godblessadjei?_rdc=1&_rdr";
+    _controller.visitFacebook(url);
   }
 
 

@@ -1,4 +1,4 @@
-package com.example.glorycity
+package com.church.glorycity
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "1008198679551",
-    "firebase_url": "https://story-da733.firebaseio.com",
-    "project_id": "story-da733",
-    "storage_bucket": "story-da733.appspot.com"
+    "project_number": "1008111920331",
+    "firebase_url": "https://flutter-2099a.firebaseio.com",
+    "project_id": "flutter-2099a",
+    "storage_bucket": "flutter-2099a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1008198679551:android:f855d1cf17abc3f06b45ca",
+        "mobilesdk_app_id": "1:1008111920331:android:726e551d813a2496b8a74e",
         "android_client_info": {
-          "package_name": "com.example.classified"
+          "package_name": "com.church.glorycity"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1008198679551-oo55i93hdsu0a12kishmpdekbdhnulsr.apps.googleusercontent.com",
+          "client_id": "1008111920331-efoieas0loofl2bf8ko0uqmr1tj1vf8c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD4jysf8AepW8zvPJDSFbpYW2XjgPo0X8M"
+          "current_key": "AIzaSyAGuDQXbCWOzRK3SEqJb5YlJupR-zdTdo8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1008198679551-oo55i93hdsu0a12kishmpdekbdhnulsr.apps.googleusercontent.com",
+              "client_id": "1008111920331-efoieas0loofl2bf8ko0uqmr1tj1vf8c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -37,56 +37,27 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1008198679551:android:df840876f9dbfa5b6b45ca",
+        "mobilesdk_app_id": "1:1008111920331:android:dde55354e1c2ca36b8a74e",
         "android_client_info": {
-          "package_name": "com.example.fitness_app"
+          "package_name": "com.example.startupnamer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1008198679551-oo55i93hdsu0a12kishmpdekbdhnulsr.apps.googleusercontent.com",
+          "client_id": "1008111920331-efoieas0loofl2bf8ko0uqmr1tj1vf8c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD4jysf8AepW8zvPJDSFbpYW2XjgPo0X8M"
+          "current_key": "AIzaSyAGuDQXbCWOzRK3SEqJb5YlJupR-zdTdo8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1008198679551-oo55i93hdsu0a12kishmpdekbdhnulsr.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1008198679551:android:6cc610c5bc54be656b45ca",
-        "android_client_info": {
-          "package_name": "com.example.glorycity"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1008198679551-oo55i93hdsu0a12kishmpdekbdhnulsr.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD4jysf8AepW8zvPJDSFbpYW2XjgPo0X8M"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1008198679551-oo55i93hdsu0a12kishmpdekbdhnulsr.apps.googleusercontent.com",
+              "client_id": "1008111920331-efoieas0loofl2bf8ko0uqmr1tj1vf8c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -16,4 +16,16 @@ class SocialController extends GetxController{
       _socialStateStream.value = badNavigation(e.message);
     }
   }
+
+  void visitFacebook(String url) async{
+    try{
+      await _baseController.socialFacebook(url);
+      _socialStateStream.value= UrlState();
+    }on UrlException catch(e){
+      _socialStateStream.value = badNavigation(e.message);
+    }
+  }
+
+
+
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:glorycity/membership/MembershipController.dart';
 import 'package:glorycity/recorded.dart';
 
 import '../about.dart';
@@ -14,6 +16,7 @@ class Membership extends StatefulWidget {
 }
 
 class _MembershipState extends State<Membership> {
+
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
@@ -21,7 +24,10 @@ class _MembershipState extends State<Membership> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
+  bool _autovalidate = false;
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _controller = Get.put(MembershipController());
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +119,9 @@ class _MembershipState extends State<Membership> {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: ElevatedButton(
                 child: const Text("Register"),
-                onPressed: () {},
+                onPressed: () {
+                  RegisterMember();
+                },
               ),
             ),
           ],
@@ -129,12 +137,24 @@ class _MembershipState extends State<Membership> {
         padding: const EdgeInsets.all(5.0),
         child: Column(
           children: [
-            membershipForm,
+            Obx(() => membershipForm)
           ],
         ),
       ),
 
     );
+  }
+
+  void RegisterMember() {
+    if(_formKey.currentState!.validate()){
+      _controller.MembershipRegistration(firstNameController.text, lastNameController.text, ageController.text, emailController.text,
+          phoneController.text, addressController.text, cityController.text);
+    }else {
+      setState(() {
+        _autovalidate = true;
+      });
+    }
+
   }
 
   @override
@@ -149,4 +169,6 @@ class _MembershipState extends State<Membership> {
     super.dispose();
 
   }
+
+
 }
