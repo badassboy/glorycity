@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class Visitors extends StatefulWidget {
   const Visitors({Key? key}) : super(key: key);
@@ -11,9 +12,7 @@ class _VisitorsState extends State<Visitors> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Visitors"),
-      ),
+      appBar: CustomAppBar(title: "Visitors"),
       body: Container(),
     );
   }

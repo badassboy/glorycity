@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class SecondOffering extends StatefulWidget {
   const SecondOffering({Key? key}) : super(key: key);
@@ -11,9 +12,7 @@ class _SecondOfferingState extends State<SecondOffering> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Offering"),
-      ),
+      appBar: CustomAppBar(title: "Second Offering"),
       body: Container(),
     );
   }

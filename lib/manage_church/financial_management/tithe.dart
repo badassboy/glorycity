@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class Tithe extends StatefulWidget {
   const Tithe({Key? key}) : super(key: key);
@@ -11,9 +12,7 @@ class _TitheState extends State<Tithe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Tithe"),
-      ),
+      appBar: CustomAppBar(title: "Title"),
       body: Container(),
     );
   }

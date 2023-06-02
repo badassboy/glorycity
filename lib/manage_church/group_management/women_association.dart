@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class WomenAssociation extends StatefulWidget {
   const WomenAssociation({Key? key}) : super(key: key);
@@ -11,9 +12,7 @@ class _WomenAssociationState extends State<WomenAssociation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Women Association"),
-      ),
+      appBar: CustomAppBar(title: "Women Association"),
       body: Container(),
     );
   }

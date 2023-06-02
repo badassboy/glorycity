@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glorycity/widgets/bottomNavigation.dart';
+import 'package:glorycity/widgets/custom_bottom_navigation.dart';
 
 class AttendanceManagement extends StatefulWidget {
   const AttendanceManagement({Key? key}) : super(key: key);

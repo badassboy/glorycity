@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class Youth extends StatefulWidget {
   const Youth({Key? key}) : super(key: key);
@@ -11,9 +12,7 @@ class _YouthState extends State<Youth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Youth"),
-      ),
+      appBar: CustomAppBar(title: "Youth"),
       body: Container(),
     );
   }
