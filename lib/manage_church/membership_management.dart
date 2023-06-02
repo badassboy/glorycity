@@ -3,6 +3,7 @@ import 'package:glorycity/manage_church/membership_management/new_convert.dart';
 import 'package:glorycity/manage_church/membership_management/visitors.dart';
 import 'package:glorycity/widgets/custom_bottom_navigation.dart';
 import 'package:glorycity/widgets/custom_list_tile.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class MembershipManagement extends StatefulWidget {
   const MembershipManagement({Key? key}) : super(key: key);
@@ -15,9 +16,7 @@ class _MembershipManagementState extends State<MembershipManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Membership management"),
-        ),
+        appBar: CustomAppBar(title: "Funeral"),
         body: Container(),
         bottomNavigationBar: BottomNavBar(
           idx: 2,
@@ -34,31 +33,11 @@ class _MembershipManagementState extends State<MembershipManagement> {
               title: 'New Convert',
               page: NewConverts(),
             ),
-            // ListTile(
-            //   leading: SvgPicture.asset("./assets/svgs/user-plus.svg"),
-            //   title: Text("New Convert"),
-            //   onTap: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (BuildContext context) => NewConverts()));
-            //   },
-            // ),
             CustomListTile(
               icon: 'users',
               title: 'Visitors',
               page: Visitors(),
             ),
-            // ListTile(
-            //   leading: SvgPicture.asset("./assets/svgs/users.svg"),
-            //   onTap: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (BuildContext context) => Visitors()));
-            //   },
-            //   title: Text("Visitors"),
-            // ),
           ],
         )));
   }

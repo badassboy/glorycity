@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glorycity/widgets/custom_bottom_navigation.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class AttendanceManagement extends StatefulWidget {
   const AttendanceManagement({Key? key}) : super(key: key);
@@ -12,9 +13,7 @@ class _AttendanceManagementState extends State<AttendanceManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Attendance Management"),
-      ),
+      appBar:CustomAppBar(title: "Funeral"),
       body: Container(),
       bottomNavigationBar: BottomNavBar(
         idx: 4,
