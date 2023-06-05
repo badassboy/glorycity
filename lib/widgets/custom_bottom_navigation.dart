@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:glorycity/main.dart';
 //import 'package:glorycity/wdgets/MainButton.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -27,7 +26,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           setState(() {
             Navigator.pushReplacementNamed(context, "finance");
             widget.idx = index;
-            //print(indexed);
           });
         } else if (index == 1) {
           setState(() {
@@ -39,7 +37,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
             Navigator.pushReplacementNamed(context, "member");
             widget.idx = index;
           });
-          print(indexed);
         } else if (index == 3) {
           setState(() {
             Navigator.pushReplacementNamed(context, "people");

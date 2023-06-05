@@ -4,9 +4,9 @@ import 'package:glorycity/manage_church/event_management/children_party.dart';
 import 'package:glorycity/manage_church/event_management/convention.dart';
 import 'package:glorycity/manage_church/event_management/funeral.dart';
 import 'package:glorycity/manage_church/event_management/wedding.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_bottom_navigation.dart';
 import 'package:glorycity/widgets/custom_list_tile.dart';
-import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class EventManagement extends StatefulWidget {
   const EventManagement({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _EventManagementState extends State<EventManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(title: "Funeral"),
+        appBar: CustomAppBar(title: "Event Management"),
         body: Container(),
         bottomNavigationBar: BottomNavBar(
           idx: 1,
@@ -33,7 +33,7 @@ class _EventManagementState extends State<EventManagement> {
             ),
             CustomListTile(
               icon: 'bar-chart',
-              title: 'Tithe',
+              title: 'Building Project',
               page: BuildingProject(),
             ),
             CustomListTile(

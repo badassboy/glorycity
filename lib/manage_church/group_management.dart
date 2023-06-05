@@ -4,9 +4,9 @@ import 'package:glorycity/manage_church/group_management/church_elders.dart';
 import 'package:glorycity/manage_church/group_management/men_association.dart';
 import 'package:glorycity/manage_church/group_management/women_association.dart';
 import 'package:glorycity/manage_church/group_management/youth.dart';
+import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_bottom_navigation.dart';
 import 'package:glorycity/widgets/custom_list_tile.dart';
-import 'package:glorycity/widgets/custom_app_bar.dart';
 
 class GroupManagement extends StatefulWidget {
   const GroupManagement({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _GroupManagementState extends State<GroupManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(title: "Funeral"),
+        appBar: CustomAppBar(title: "Group Management"),
         body: Container(),
         bottomNavigationBar: BottomNavBar(
           idx: 3,
