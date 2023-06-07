@@ -122,7 +122,7 @@ class _MembersState extends State<Members> {
                             isLoading = false;
                           });
                           FirebaseServices()
-                              .addMember(
+                              .addMembership(
                                   nameController.text,
                                   int.parse(numberController.text),
                                   int.parse(ageController.text),

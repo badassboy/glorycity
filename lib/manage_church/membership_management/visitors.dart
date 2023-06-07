@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/firebase_service.dart';
 import 'package:glorycity/user_provider.dart';
 import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_buttons.dart';
@@ -35,15 +36,15 @@ class _VisitorsState extends State<Visitors> {
     return Scaffold(
       appBar: CustomAppBar(title: "Visitors"),
       body: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           //decoration: BoxDecoration(),
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: ListView(children: const [
-                    SizedBox(height: 20),
+                  child: ListView(children: [
+                    const SizedBox(height: 20),
                     // Text(
                     //   "Full Name",
                     //   style: TextStyle(fontSize: 18),
@@ -51,8 +52,9 @@ class _VisitorsState extends State<Visitors> {
                     CustomTextFormField(
                       label: "Name",
                       hintText: "Enter name here",
+                      controller: nameController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Phone Number",
                     //   style: TextStyle(fontSize: 18),
@@ -61,8 +63,9 @@ class _VisitorsState extends State<Visitors> {
                       label: "Phone Number",
                       hintText: "Enter phone number here",
                       keyboardType: TextInputType.number,
+                      controller: numberController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Age",
                     //   style: TextStyle(fontSize: 18),
@@ -71,8 +74,9 @@ class _VisitorsState extends State<Visitors> {
                       label: "Age",
                       hintText: "Enter age here",
                       keyboardType: TextInputType.number,
+                      controller: ageController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Occupation",
                     //   style: TextStyle(fontSize: 18),
@@ -80,17 +84,19 @@ class _VisitorsState extends State<Visitors> {
                     SecondaryTextFormField(
                       label: "Occupation",
                       hintText: "Enter occupation here",
+                      controller: occupationController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Location",
                     //   style: TextStyle(fontSize: 18),
                     // ),
                     SecondaryTextFormField(
                       label: "Location",
+                      controller: locationController,
                       hintText: "Enter place of residence here",
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Hometown",
                     //   style: TextStyle(fontSize: 18),
@@ -98,12 +104,14 @@ class _VisitorsState extends State<Visitors> {
                     SecondaryTextFormField(
                       label: "Hometown",
                       hintText: "Enter hometown here",
+                      controller: hometownController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     SecondaryTextFormField(
                       label: "Referral number of relative",
                       hintText: "Enter relative number here",
                       keyboardType: TextInputType.number,
+                      controller: referralNumberController,
                     ),
                   ]),
                 ),
@@ -114,22 +122,27 @@ class _VisitorsState extends State<Visitors> {
                           setState(() {
                             isLoading = false;
                           });
-                          // FirebaseServices()
-                          //     .addFinancialManagement_2(
-                          //         double.parse(amountController.text),
-                          //         dateGet,
-                          //         "Second Offering",
-                          //         userProvider?.appUser?.id)
-                          //     .whenComplete(() => setState(() {
-                          //           isLoading = true;
-                          //         }));
+                          FirebaseServices()
+                              .addMembership(
+                                  nameController.text,
+                                  int.parse(numberController.text),
+                                  int.parse(ageController.text),
+                                  occupationController.text,
+                                  locationController.text,
+                                  hometownController.text,
+                                  int.parse(referralNumberController.text),
+                                  "Visitors",
+                                  userProvider?.appUser?.id)
+                              .whenComplete(() => setState(() {
+                                    isLoading = true;
+                                  }));
                         },
                   child: Visibility(
                       visible: isLoading,
                       replacement: const CircularProgressIndicator(),
                       child: const Text("Submit")),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 )
               ],

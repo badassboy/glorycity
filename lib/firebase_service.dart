@@ -79,7 +79,53 @@ class FirebaseServices {
         .set(user);
   }
 
-  Future<void> addMember(
+  Future<void> addEventManagement(
+      String projectName,
+      int amount,
+      String startDate,
+      String endingDate,
+      String projectLeaders,
+      String objectives,
+      String collectionName,
+      String? id) async {
+    var user = <String, dynamic>{
+      "projectName": projectName,
+      "amount": amount,
+      "startDate": startDate,
+      "endingDate": endingDate,
+      "projectLeaders": projectLeaders,
+      "objectives": objectives,
+    };
+    await FirebaseFirestore.instance
+        .collection("churchManagement")
+        .doc(id)
+        .collection(collectionName)
+        .doc()
+        .set(user);
+  }
+
+  Future<void> addEventManagementChildrenParty(
+      int amount,
+      String startDate,
+      String description,
+      String activity,
+      String collectionName,
+      String? id) async {
+    var user = <String, dynamic>{
+      "amount": amount,
+      "startDate": startDate,
+      "description": description,
+      "activity": activity,
+    };
+    await FirebaseFirestore.instance
+        .collection("churchManagement")
+        .doc(id)
+        .collection(collectionName)
+        .doc()
+        .set(user);
+  }
+
+  Future<void> addMembership(
       String name,
       int number,
       int age,

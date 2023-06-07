@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/firebase_service.dart';
+import 'package:glorycity/user_provider.dart';
 import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_buttons.dart';
 import 'package:glorycity/widgets/text_fields.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class BuildingProject extends StatefulWidget {
   const BuildingProject({Key? key}) : super(key: key);
@@ -11,6 +15,20 @@ class BuildingProject extends StatefulWidget {
 }
 
 class _BuildingProjectState extends State<BuildingProject> {
+  TextEditingController projectNameController = TextEditingController();
+  TextEditingController projectLeadersController = TextEditingController();
+  TextEditingController objectivesController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+  bool isLoading = true;
+  UserProvider? userProvider;
+  String startDateGet = "";
+  String endDateGet = "";
+  @override
+  void initState() {
+    super.initState();
+    userProvider = context.read<UserProvider>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,22 +43,16 @@ class _BuildingProjectState extends State<BuildingProject> {
                 Expanded(
                   child: ListView(children: [
                     const SizedBox(height: 20),
-                    // Text(
-                    //   "Project Name",
-                    //   style: TextStyle(fontSize: 18),
-                    // ),
-                    const CustomTextFormField(
+                    CustomTextFormField(
                       hintText: "Enter name here",
                       label: "Project Name",
-                      keyboardType: TextInputType.number,
+                      controller: projectNameController,
                     ),
                     const SizedBox(height: 40),
-                    // Text(
-                    //   "Allocated Amount",
-                    //   style: TextStyle(fontSize: 18),
-                    // ),
-                    const CustomTextFormField(
+                    CustomTextFormField(
                         hintText: "Enter amount here",
+                        controller: amountController,
+                        keyboardType: TextInputType.number,
                         label: "Allocated Amount"),
                     const SizedBox(height: 40),
                     const TextStart(
@@ -50,11 +62,19 @@ class _BuildingProjectState extends State<BuildingProject> {
                       child: const Text("Select Date"),
                       onPressed: () async {
                         await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime.now(),
-                            lastDate:
-                                DateTime.utc(DateTime.now().year + 1, 12, 31));
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime.utc(
+                                    DateTime.now().year + 1, 12, 31))
+                            .then((selectedDate) {
+                          if (selectedDate != null) {
+                            setState(() {
+                              startDateGet =
+                                  DateFormat('d-MMM-yy').format(selectedDate);
+                            });
+                          }
+                        });
                       },
                     ),
                     const SizedBox(height: 40),
@@ -65,27 +85,28 @@ class _BuildingProjectState extends State<BuildingProject> {
                       child: const Text("Select Date"),
                       onPressed: () async {
                         await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime.now(),
-                            lastDate:
-                                DateTime.utc(DateTime.now().year + 1, 12, 31));
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime.utc(
+                                    DateTime.now().year + 1, 12, 31))
+                            .then((selectedDate) {
+                          if (selectedDate != null) {
+                            setState(() {
+                              endDateGet =
+                                  DateFormat('d-MMM-yy').format(selectedDate);
+                            });
+                          }
+                        });
                       },
                     ),
                     const SizedBox(height: 40),
-                    // Text(
-                    //   "Starting Project Leaders",
-                    //   style: TextStyle(fontSize: 18),
-                    // ),
-                    const SecondaryTextFormField(
+                    SecondaryTextFormField(
                       hintText: "Enter names here",
                       label: "Starting Project Leaders",
+                      controller: projectLeadersController,
                     ),
                     const SizedBox(height: 40),
-                    // Text(
-                    //   "Objective",
-                    //   style: TextStyle(fontSize: 18),
-                    // ),
                     const SecondaryTextFormField(
                       hintText: "Enter objective here",
                       label: "Objectives",
@@ -98,8 +119,30 @@ class _BuildingProjectState extends State<BuildingProject> {
                   ]),
                 ),
                 DefaultPrimaryButton(
-                  child: const Text("Submit"),
-                  onPressed: () {},
+                  onPressed: !isLoading
+                      ? null
+                      : () {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          FirebaseServices()
+                              .addEventManagement(
+                                  projectNameController.text,
+                                  int.parse(amountController.text),
+                                  startDateGet,
+                                  endDateGet,
+                                  projectLeadersController.text,
+                                  objectivesController.text,
+                                  "Building Project",
+                                  userProvider?.appUser?.id)
+                              .whenComplete(() => setState(() {
+                                    isLoading = true;
+                                  }));
+                        },
+                  child: Visibility(
+                      visible: isLoading,
+                      replacement: const CircularProgressIndicator(),
+                      child: const Text("Submit")),
                 ),
                 const SizedBox(
                   height: 10,
