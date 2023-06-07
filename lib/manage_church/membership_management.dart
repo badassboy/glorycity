@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/manage_church/membership_management/members.dart';
 import 'package:glorycity/manage_church/membership_management/new_convert.dart';
 import 'package:glorycity/manage_church/membership_management/visitors.dart';
 import 'package:glorycity/widgets/custom_app_bar.dart';
@@ -27,6 +28,11 @@ class _MembershipManagementState extends State<MembershipManagement> {
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.blue),
               child: Text("Membership Management"),
+            ),
+            CustomListTile(
+              icon: 'users',
+              title: 'Members',
+              page: Members(),
             ),
             CustomListTile(
               icon: 'user-plus',

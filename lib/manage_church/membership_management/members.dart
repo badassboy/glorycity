@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/firebase_service.dart';
 import 'package:glorycity/user_provider.dart';
 import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_buttons.dart';
 import 'package:glorycity/widgets/text_fields.dart';
 import 'package:provider/provider.dart';
 
-class NewConverts extends StatefulWidget {
-  const NewConverts({Key? key}) : super(key: key);
+class Members extends StatefulWidget {
+  const Members({Key? key}) : super(key: key);
 
   @override
-  State<NewConverts> createState() => _NewConvertsState();
+  State<Members> createState() => _MembersState();
 }
 
-class _NewConvertsState extends State<NewConverts> {
+class _MembersState extends State<Members> {
   bool isLoading = true;
   UserProvider? userProvider;
   TextEditingController nameController = TextEditingController();
@@ -23,7 +24,6 @@ class _NewConvertsState extends State<NewConverts> {
   TextEditingController locationController = TextEditingController();
   TextEditingController referralNumberController = TextEditingController();
   TextEditingController hometownController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
@@ -33,25 +33,25 @@ class _NewConvertsState extends State<NewConverts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "New Converts"),
+      appBar: CustomAppBar(title: "Visitors"),
       body: Container(
           padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(),
+          //decoration: BoxDecoration(),
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: ListView(children: const [
+                  child: ListView(children: [
                     SizedBox(height: 20),
                     // Text(
                     //   "Full Name",
                     //   style: TextStyle(fontSize: 18),
                     // ),
                     CustomTextFormField(
-                      label: "Full Name",
-                      hintText: "Enter amount here",
-                      keyboardType: TextInputType.number,
+                      label: "Name",
+                      hintText: "Enter name here",
+                      controller: nameController,
                     ),
                     SizedBox(height: 40),
                     // Text(
@@ -60,43 +60,57 @@ class _NewConvertsState extends State<NewConverts> {
                     // ),
                     CustomTextFormField(
                       label: "Phone Number",
-                      hintText: "Enter phone here",
+                      hintText: "Enter phone number here",
                       keyboardType: TextInputType.number,
+                      controller: numberController,
                     ),
                     SizedBox(height: 40),
-                    CustomTextFormField(
+                    // Text(
+                    //   "Age",
+                    //   style: TextStyle(fontSize: 18),
+                    // ),
+                    SecondaryTextFormField(
                       label: "Age",
                       hintText: "Enter age here",
+                      keyboardType: TextInputType.number,
+                      controller: ageController,
                     ),
                     SizedBox(height: 40),
-                    CustomTextFormField(
+                    // Text(
+                    //   "Occupation",
+                    //   style: TextStyle(fontSize: 18),
+                    // ),
+                    SecondaryTextFormField(
                       label: "Occupation",
-                      hintText: "Enter work here",
+                      hintText: "Enter occupation here",
+                      controller: occupationController,
                     ),
                     SizedBox(height: 40),
+                    // Text(
+                    //   "Location",
+                    //   style: TextStyle(fontSize: 18),
+                    // ),
                     SecondaryTextFormField(
                       label: "Location",
-                      hintText: "Enter residence here",
+                      hintText: "Enter place of residence here",
+                      controller: locationController,
                     ),
                     SizedBox(height: 40),
-                    SecondaryTextFormField(
-                      label: "Referral Name(Optional)",
-                      hintText: "Enter other names here",
-                    ),
-                    SizedBox(height: 40),
+                    // Text(
+                    //   "Hometown",
+                    //   style: TextStyle(fontSize: 18),
+                    // ),
                     SecondaryTextFormField(
                       label: "Hometown",
+                      hintText: "Enter hometown here",
+                      controller: hometownController,
                     ),
                     SizedBox(height: 40),
                     SecondaryTextFormField(
                       label: "Referral number of relative",
                       hintText: "Enter relative number here",
+                      controller: referralNumberController,
                       keyboardType: TextInputType.number,
-                    ),
-                    SizedBox(height: 40),
-                    Text(
-                      "Picture",
-                      style: TextStyle(fontSize: 18),
                     ),
                   ]),
                 ),
@@ -107,15 +121,20 @@ class _NewConvertsState extends State<NewConverts> {
                           setState(() {
                             isLoading = false;
                           });
-                          // FirebaseServices()
-                          //     .addFinancialManagement_2(
-                          //         double.parse(amountController.text),
-                          //         dateGet,
-                          //         "Second Offering",
-                          //         userProvider?.appUser?.id)
-                          //     .whenComplete(() => setState(() {
-                          //           isLoading = true;
-                          //         }));
+                          FirebaseServices()
+                              .addMember(
+                                  nameController.text,
+                                  int.parse(numberController.text),
+                                  int.parse(ageController.text),
+                                  occupationController.text,
+                                  locationController.text,
+                                  hometownController.text,
+                                  int.parse(referralNumberController.text),
+                                  "Members",
+                                  userProvider?.appUser?.id)
+                              .whenComplete(() => setState(() {
+                                    isLoading = true;
+                                  }));
                         },
                   child: Visibility(
                       visible: isLoading,

@@ -5,12 +5,14 @@ class CustomListTile extends StatelessWidget {
   final String icon;
   final String title;
   final Widget page;
+  final IconButton? iconButton;
 
   const CustomListTile({
     Key? key,
     required this.icon,
     required this.title,
     required this.page,
+    this.iconButton,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class CustomListTile extends StatelessWidget {
         }));
       },
       title: Text(title),
+      trailing: iconButton,
     );
   }
 }

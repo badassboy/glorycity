@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glorycity/manage_church/event_management/building_project.dart';
 import 'package:glorycity/manage_church/event_management/children_party.dart';
-import 'package:glorycity/manage_church/event_management/convention.dart';
-import 'package:glorycity/manage_church/event_management/funeral.dart';
-import 'package:glorycity/manage_church/event_management/wedding.dart';
 import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_bottom_navigation.dart';
 import 'package:glorycity/widgets/custom_list_tile.dart';
@@ -41,21 +38,21 @@ class _EventManagementState extends State<EventManagement> {
               title: 'Children Party',
               page: ChildrenParty(),
             ),
-            CustomListTile(
-              icon: 'minimize-2',
-              title: 'Convention',
-              page: Convention(),
-            ),
-            CustomListTile(
-              icon: 'slack',
-              title: 'Funeral',
-              page: Funeral(),
-            ),
-            CustomListTile(
-              icon: 'wind',
-              title: 'Wedding',
-              page: Wedding(),
-            ),
+            // CustomListTile(
+            //   icon: 'minimize-2',
+            //   title: 'Convention',
+            //   page: Convention(),
+            // ),
+            // CustomListTile(
+            //   icon: 'slack',
+            //   title: 'Funeral',
+            //   page: Funeral(),
+            // ),
+            // CustomListTile(
+            //   icon: 'wind',
+            //   title: 'Wedding',
+            //   page: Wedding(),
+            // ),
           ],
         )));
   }

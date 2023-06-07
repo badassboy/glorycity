@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/user_provider.dart';
 import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_buttons.dart';
 import 'package:glorycity/widgets/text_fields.dart';
+import 'package:provider/provider.dart';
 
 class Visitors extends StatefulWidget {
   const Visitors({Key? key}) : super(key: key);
@@ -11,6 +13,23 @@ class Visitors extends StatefulWidget {
 }
 
 class _VisitorsState extends State<Visitors> {
+  bool isLoading = true;
+  UserProvider? userProvider;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController occupationController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  TextEditingController referralNumberController = TextEditingController();
+  TextEditingController hometownController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    userProvider = context.read<UserProvider>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +60,7 @@ class _VisitorsState extends State<Visitors> {
                     CustomTextFormField(
                       label: "Phone Number",
                       hintText: "Enter phone number here",
+                      keyboardType: TextInputType.number,
                     ),
                     SizedBox(height: 40),
                     // Text(
@@ -50,6 +70,7 @@ class _VisitorsState extends State<Visitors> {
                     SecondaryTextFormField(
                       label: "Age",
                       hintText: "Enter age here",
+                      keyboardType: TextInputType.number,
                     ),
                     SizedBox(height: 40),
                     // Text(
@@ -75,19 +96,38 @@ class _VisitorsState extends State<Visitors> {
                     //   style: TextStyle(fontSize: 18),
                     // ),
                     SecondaryTextFormField(
-                      label: "Home",
+                      label: "Hometown",
                       hintText: "Enter hometown here",
                     ),
                     SizedBox(height: 40),
                     SecondaryTextFormField(
                       label: "Referral number of relative",
                       hintText: "Enter relative number here",
+                      keyboardType: TextInputType.number,
                     ),
                   ]),
                 ),
                 DefaultPrimaryButton(
-                  child: Text("Submit"),
-                  onPressed: () {},
+                  onPressed: !isLoading
+                      ? null
+                      : () {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          // FirebaseServices()
+                          //     .addFinancialManagement_2(
+                          //         double.parse(amountController.text),
+                          //         dateGet,
+                          //         "Second Offering",
+                          //         userProvider?.appUser?.id)
+                          //     .whenComplete(() => setState(() {
+                          //           isLoading = true;
+                          //         }));
+                        },
+                  child: Visibility(
+                      visible: isLoading,
+                      replacement: const CircularProgressIndicator(),
+                      child: const Text("Submit")),
                 ),
                 SizedBox(
                   height: 10,

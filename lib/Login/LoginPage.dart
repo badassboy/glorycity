@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glorycity/Register/signup.dart';
+import 'package:glorycity/main.dart';
+import 'package:glorycity/user_provider.dart';
+import 'package:glorycity/widgets/custom_buttons.dart';
+import 'package:glorycity/widgets/text_fields.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -9,8 +14,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  FirebaseAuth auth = FirebaseAuth.instance;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool isLoading = true;
+  UserProvider? userProvider;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -42,35 +50,35 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: TextField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Email"),
+            CustomTextFormField(
+              controller: passwordController,
+              hintText: "Password",
+              obscureText: true,
+            ),
+            CustomTextFormField(
+              controller: passwordController,
+              hintText: "Password",
+            ),
+            SizedBox(height: 20),
+            Visibility(
+              visible: isLoading,
+              replacement: Center(child: CircularProgressIndicator()),
+              child: DefaultPrimaryButton(
+                child: const Text(
+                  "Login",
+                  style: TextStyle(fontSize: 18),
+                ),
+                onPressed: !isLoading
+                    ? null
+                    : () async {
+                        setState(() {
+                          isLoading = false;
+                        });
+
+                        await loginEmail().whenComplete(() => isLoading = true);
+                      },
               ),
             ),
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: TextField(
-                obscureText: true,
-                controller: passwordController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Password"),
-              ),
-            ),
-            Container(
-                height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: ElevatedButton(
-                    child: const Text(
-                      "Login",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(400, 100)))),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -85,10 +93,14 @@ class _LoginPageState extends State<LoginPage> {
                           MaterialPageRoute(
                               builder: (context) => const SignUpScreen()));
                     },
-                    child: const Text(
-                      "Sign Up",
-                      style: TextStyle(
-                        fontSize: 20,
+                    child: Visibility(
+                      visible: isLoading,
+                          replacement: const CircularProgressIndicator(),
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ))
               ],
@@ -118,5 +130,25 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
+  }
+
+  Future<void> loginEmail() async {
+    var login = await auth
+        .signInWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text)
+        .whenComplete(() async {
+      await userProvider?.getUser(email: auth.currentUser!.email!);
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.blue,
+          content: Text("Successful login ${auth.currentUser?.email}")));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return const MyHomePage();
+      }));
+    });
+    // if (!login) {}
   }
 }

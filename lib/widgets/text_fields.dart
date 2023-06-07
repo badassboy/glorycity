@@ -180,3 +180,23 @@ class SecondaryTextFormField extends StatelessWidget {
     );
   }
 }
+
+class TextStart extends StatelessWidget {
+  final String label;
+  const TextStart({Key? key, required this.label}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+        text: TextSpan(
+            text: label == null ? "" : '$label',
+            style: const TextStyle(fontSize: 18, color: Colors.black),
+            children: [
+          TextSpan(
+              text: label == null ? "" : ' *',
+              style: const TextStyle(
+                color: Colors.red,
+              ))
+        ]));
+  }
+}

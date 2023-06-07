@@ -16,30 +16,30 @@ class _ChildrenPartyState extends State<ChildrenParty> {
     return Scaffold(
       appBar: CustomAppBar(title: "Children Party"),
       body: Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(),
+          padding: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(),
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: ListView(children: [
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     // Text(
                     //   "Allocated Amount",
                     //   style: TextStyle(fontSize: 18),
                     // ),
-                    CustomTextFormField(
+                    const CustomTextFormField(
                       label: "Allocated Amount",
                       hintText: "Enter amount here",
+                      keyboardType: TextInputType.number,
                     ),
-                    SizedBox(height: 40),
-                    Text(
-                      "Celebration Date",
-                      style: TextStyle(fontSize: 18),
+                    const SizedBox(height: 40),
+                    const TextStart(
+                      label: "Celebration Date",
                     ),
                     DefaultPrimaryButton(
-                      child: Text("Select Date"),
+                      child: const Text("Select Date"),
                       onPressed: () async {
                         await showDatePicker(
                             context: context,
@@ -49,29 +49,29 @@ class _ChildrenPartyState extends State<ChildrenParty> {
                                 DateTime.utc(DateTime.now().year + 1, 12, 31));
                       },
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Description",
                     //   style: TextStyle(fontSize: 18),
                     // ),
-                    SecondaryTextFormField(
+                    const SecondaryTextFormField(
                       label: "Description",
                       hintText: "Enter description here",
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Included Activities",
                     //   style: TextStyle(fontSize: 18),
                     // ),
-                    SecondaryTextFormField(
+                    const SecondaryTextFormField(
                       label: "Included Activities",
                       hintText: "Enter activities here",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 80,
                     ),
                     DefaultPrimaryButton(
-                      child: Text("Submit"),
+                      child: const Text("Submit"),
                       onPressed: () {},
                     ),
                   ]),

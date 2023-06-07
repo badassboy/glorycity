@@ -1,8 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:glorycity/Login/LoginPage.dart';
 import 'package:glorycity/OnlineRadio.dart';
+import 'package:glorycity/Register/signup.dart';
+import 'package:glorycity/firebase_options.dart';
+import 'package:glorycity/firebase_service.dart';
 import 'package:glorycity/give.dart';
 import 'package:glorycity/manage_church/attendance.dart';
 import 'package:glorycity/manage_church/event_management.dart';
@@ -12,22 +17,31 @@ import 'package:glorycity/manage_church/membership_management.dart';
 import 'package:glorycity/recorded.dart';
 import 'package:glorycity/social/application/social.dart';
 import 'package:glorycity/social/media/media.dart';
+import 'package:glorycity/user.dart' as Users;
+import 'package:glorycity/user_provider.dart';
 import 'package:glorycity/website/webController.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
 
 import 'about.dart';
 import 'contactus.dart';
 
-int indexed = 0;
+// int indexed = 0;
 void main() {
   initialize();
   runApp(MyApp());
 }
 
-void initialize() {
+void initialize() async {
+  WidgetsFlutterBinding.ensureInitialized();
 //  inject social controller
   Get.lazyPut(() => BaseController(Get.put(UserService())));
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends GetWidget<BaseController> {
@@ -35,20 +49,52 @@ class MyApp extends GetWidget<BaseController> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const MyHomePage(),
-        routes: {
-          "event": (context) => EventManagement(),
-          "member": (context) => MembershipManagement(),
-          "people": (context) => GroupManagement(),
-          "finance": (context) => FinancialManagement(),
-          "attendance": (context) => AttendanceManagement(),
-          //"event":(context)=>MyApp(),
+    return FutureBuilder<SharedPreferences>(
+        future: SharedPreferences.getInstance(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Container(
+              color: Colors.white,
+            );
+          }
+          return MultiProvider(
+            providers: [
+              ListenableProvider(
+                create: (_) => UserProvider(preferences: snapshot.data),
+              )
+            ],
+            child: MaterialApp(
+                title: 'Flutter Demo',
+                theme: ThemeData(
+                  primarySwatch: Colors.blue,
+                ),
+                home: const DeciderPage(),
+                routes: {
+                  "event": (context) => EventManagement(),
+                  "member": (context) => MembershipManagement(),
+                  "people": (context) => GroupManagement(),
+                  "finance": (context) => FinancialManagement(),
+                  "attendance": (context) => AttendanceManagement(),
+                  //"event":(context)=>MyApp(),
+                }),
+          );
         });
+  }
+}
+
+class DeciderPage extends StatelessWidget {
+  const DeciderPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<UserProvider>(
+      builder: (context, userProvider, widget) {
+        if (userProvider.appUser != null) {
+          return const MyHomePage();
+        }
+        return const SignUpScreen();
+      },
+    );
   }
 }
 
@@ -63,6 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
   //Injecting Contoller
   final _controller = Get.put(SocialController());
   final _webContoller = Get.put(WebController());
+  FirebaseAuth auth = FirebaseAuth.instance;
+  bool isLoading = true;
+  UserProvider? userProvider;
 
   late VideoPlayerController _player;
 //   String _ulr = "https://www.youtube.com/channel/UCOMRXp2TviMT1wjHubRZW-Q";
@@ -70,10 +119,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    userProvider = context.read<UserProvider>();
     _player = VideoPlayerController.network(
         "https://www.youtube.com/watch?v=_4diEjBne4c")
       ..initialize().then((_) {
-        setState(() {});
         _player.pause();
       });
   }
@@ -95,13 +144,13 @@ class _MyHomePageState extends State<MyHomePage> {
           image: AssetImage("assets/audio/worship.jpg"),
         )),
         child: Container(
+          margin: const EdgeInsets.only(top: 50),
           child: const Text(
             "Worship with us online",
             style: TextStyle(
                 fontSize: 22, color: Colors.white, fontWeight: FontWeight.w500),
             textAlign: TextAlign.center,
           ),
-          margin: const EdgeInsets.only(top: 50),
         ));
 
     final tv = SizedBox(
@@ -426,6 +475,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.black, width: 18, height: 18),
               title: const Text('Manage Church'),
               onTap: () {
+                read(user: userProvider?.appUser);
+
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -524,41 +575,43 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              jumbotron,
-              const SizedBox(
-                height: 20,
-              ),
-              tv,
-              const SizedBox(
-                height: 10,
-              ),
-              church,
-              const SizedBox(
-                height: 10,
-              ),
-              Services,
-              const SizedBox(
-                height: 10,
-              ),
-              love,
-              const SizedBox(
-                height: 10,
-              ),
-              liveWatch,
-              const SizedBox(
-                height: 10,
-              ),
-              footer,
-            ],
+      body: Consumer<UserProvider>(builder: (context, userProvider, child) {
+        return SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                jumbotron,
+                const SizedBox(
+                  height: 20,
+                ),
+                tv,
+                const SizedBox(
+                  height: 10,
+                ),
+                church,
+                const SizedBox(
+                  height: 10,
+                ),
+                Services,
+                const SizedBox(
+                  height: 10,
+                ),
+                love,
+                const SizedBox(
+                  height: 10,
+                ),
+                liveWatch,
+                const SizedBox(
+                  height: 10,
+                ),
+                footer,
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
@@ -576,5 +629,31 @@ class _MyHomePageState extends State<MyHomePage> {
   void watchFacebook() {
     String url = "https://web.facebook.com/godblessadjei?_rdc=1&_rdr";
     _controller.visitFacebook(url);
+  }
+
+  Future<void> read({required Users.User? user}) async {
+    String? email = user?.email;
+    if (!context.mounted) {
+      return;
+    }
+    await userProvider?.getUser(email: auth.currentUser!.email!);
+    var userData = user;
+    email = auth.currentUser?.email;
+    userData?.email = email;
+    await updateUser(user: userData!);
+  }
+
+  updateUser({required Users.User user}) async {
+    var result = await userProvider?.updateUser(user: user);
+    if (result?.status == QueryStatus.Successful) {
+      // print("Success");
+      return;
+    }
+    if (result?.status == QueryStatus.Failed) {
+      // print("failed");
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 }

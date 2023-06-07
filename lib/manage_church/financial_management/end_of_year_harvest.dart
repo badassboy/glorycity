@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:glorycity/firebase_service.dart';
+import 'package:glorycity/user_provider.dart';
 import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_buttons.dart';
 import 'package:glorycity/widgets/text_fields.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class EndOfYearHarvest extends StatefulWidget {
   const EndOfYearHarvest({Key? key}) : super(key: key);
@@ -11,6 +15,16 @@ class EndOfYearHarvest extends StatefulWidget {
 }
 
 class _EndOfYearHarvestState extends State<EndOfYearHarvest> {
+  UserProvider? userProvider;
+  TextEditingController amountController = TextEditingController();
+  bool isLoading = true;
+  String dateGet = "";
+  @override
+  void initState() {
+    super.initState();
+    userProvider = context.read<UserProvider>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,29 +42,56 @@ class _EndOfYearHarvestState extends State<EndOfYearHarvest> {
                     CustomTextFormField(
                       hintText: "Enter amount here",
                       label: "Amount",
+                      controller: amountController,
+                      keyboardType: TextInputType.number,
                     ),
                     SizedBox(height: 40),
-                    Text(
-                      "Date",
-                      style: TextStyle(fontSize: 18),
+                    TextStart(
+                      label: "Date",
                     ),
                     DefaultPrimaryButton(
                       child: Text("Select Date"),
                       onPressed: () async {
                         await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime.now(),
-                            lastDate:
-                                DateTime.utc(DateTime.now().year + 1, 12, 31));
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime.utc(
+                                    DateTime.now().year + 1, 12, 31))
+                            .then((selectedDate) {
+                          if (selectedDate != null) {
+                            setState(() {
+                              dateGet =
+                                  DateFormat('d-MMM-yy').format(selectedDate);
+                            });
+                          }
+                        });
                       },
                     ),
                     SizedBox(
                       height: 100,
                     ),
                     DefaultPrimaryButton(
-                      child: Text("Submit"),
-                      onPressed: () {},
+                      child: Visibility(
+                          visible: isLoading,
+                          replacement: const CircularProgressIndicator(),
+                          child: const Text("Submit")),
+                      onPressed: !isLoading
+                          ? null
+                          : () {
+                              setState(() {
+                                isLoading = false;
+                              });
+                              FirebaseServices()
+                                  .addFinancialManagement_2(
+                                      double.parse(amountController.text),
+                                      dateGet,
+                                      "End Of Year Harvest",
+                                      userProvider?.appUser?.id)
+                                  .whenComplete(() => setState(() {
+                                        isLoading = true;
+                                      }));
+                            },
                     ),
                   ]),
                 ),
