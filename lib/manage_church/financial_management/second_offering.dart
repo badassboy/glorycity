@@ -80,9 +80,18 @@ class _SecondOfferingState extends State<SecondOffering> {
                                       dateGet,
                                       "Second Offering",
                                       userProvider?.appUser?.id)
-                                  .whenComplete(() => setState(() {
-                                        isLoading = true;
-                                      }));
+                                  .whenComplete(() => {
+                                        setState(() {
+                                          isLoading = true;
+                                        }),
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                backgroundColor: Colors.blue,
+                                                content: Center(
+                                                    child: Text(
+                                                        "Submit Success")))),
+                                        amountController.clear()
+                                      });
                             },
                       child: Visibility(
                           visible: isLoading,

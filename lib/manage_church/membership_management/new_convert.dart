@@ -127,9 +127,23 @@ class _NewConvertsState extends State<NewConverts> {
                                   int.parse(referralNumberController.text),
                                   "New Converts",
                                   userProvider?.appUser?.id)
-                              .whenComplete(() => setState(() {
+                              .whenComplete(() =>{ setState(() {
                                     isLoading = true;
-                                  }));
+                                  }),
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    backgroundColor: Colors.blue,
+                                    content: Center(
+                                        child:
+                                        Text("Submit Success")))),
+                            amountController.clear(),
+                            nameController.clear(),
+                            numberController.clear(),
+                            ageController.clear(),
+                            occupationController.clear(),
+                            locationController.clear(),
+                            hometownController.clear(),
+                            referralNumberController.clear(),});
                         },
                   child: Visibility(
                       visible: isLoading,

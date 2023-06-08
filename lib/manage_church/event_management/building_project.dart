@@ -135,9 +135,21 @@ class _BuildingProjectState extends State<BuildingProject> {
                                   objectivesController.text,
                                   "Building Project",
                                   userProvider?.appUser?.id)
-                              .whenComplete(() => setState(() {
-                                    isLoading = true;
-                                  }));
+                              .whenComplete(() => {
+                                    setState(() {
+                                      isLoading = true;
+                                    }),
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            backgroundColor: Colors.blue,
+                                            content: Center(
+                                                child:
+                                                    Text("Submit Success")))),
+                                    amountController.clear(),
+                                    projectLeadersController.clear(),
+                                    projectNameController.clear(),
+                                    objectivesController.clear(),
+                                  });
                         },
                   child: Visibility(
                       visible: isLoading,

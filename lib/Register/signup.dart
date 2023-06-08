@@ -25,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isLoading = true;
+  GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           CustomTextFormField(
             controller: emailController,
             hintText: "Email",
+            validator: emailValidator,
           ),
           // SizedBox(
           //   height: 10,
@@ -65,18 +67,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
             hintText: "Password",
             obscureText: true,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           DefaultPrimaryButton(
             onPressed: !isLoading
                 ? null
                 : () async {
-                    setState(() {
-                      isLoading = false;
-                    });
-                    await registerEmail(user: userProvider?.appUser)
-                        .whenComplete(() => isLoading = true);
+                    if (signUpFormKey.currentState?.validate() == true) {
+                      setState(() {
+                        isLoading = false;
+                      });
+                      await checkEmailBeforeRegister()
+                          .whenComplete(() => setState(() {
+                                isLoading = true;
+                              }));
+                    }
                   },
             child: Visibility(
               visible: isLoading,
@@ -98,10 +104,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(5.0),
-        child: Column(
-          children: [
-            loginForm,
-          ],
+        child: Form(
+          key: signUpFormKey,
+          child: Column(
+            children: [
+              loginForm,
+            ],
+          ),
         ),
       ),
     );
@@ -114,8 +123,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
-  Future<void> registerEmail({required Users.User? user}) async {
-    await auth
+  Future<void> registerEmail() async {
+    var create = await auth
         .createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text)
         .whenComplete(() async {
@@ -127,18 +136,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         return;
       }
       userProvider = context.read<UserProvider>();
-
-      // var user = <String, dynamic>{
-      //   "id": auth.currentUser?.uid,
-      //   "email": auth.currentUser?.email,
-      //   "registrationTime":
-      //       DateFormat.yMMMMd().format(DateTime.now()).toString()
-      // };
-
-      // await store
-      //     .collection("churchManagement")
-      //     .doc(auth.currentUser?.uid)
-      //     .set(user);
       if (!context.mounted) {
         return;
       }
@@ -148,8 +145,72 @@ class _SignUpScreenState extends State<SignUpScreen> {
           content: Text("Successful Registration ${auth.currentUser?.email}")));
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
-        return MyHomePage();
+        return const MyHomePage();
       }));
     });
+  }
+
+  Future<bool> checkEmailBeforeRegister() async {
+    try {
+      // Fetch sign-in methods for the email address
+      final list = await auth.fetchSignInMethodsForEmail(emailController.text);
+
+      // Confirm if there is already a an account
+      if (list.isNotEmpty) {
+        // if (!context.mounted) {
+        //   return;
+        // }
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            backgroundColor: Colors.blue,
+            content: Text("Email already in use")));
+        return true;
+      } else {
+        try {
+          await auth
+              .createUserWithEmailAndPassword(
+                  email: emailController.text,
+                  password: passwordController.text)
+              .whenComplete(() async {
+            var user = Users.User(
+                email: auth.currentUser?.email,
+                registrationTime: DateTime.now().toString());
+            await FirebaseServices().saveUser(user: user);
+
+            if (!context.mounted) {
+              return;
+            }
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Colors.blue,
+                content: Text(
+                    "Successful Registration ${auth.currentUser?.email}")));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (BuildContext context) {
+              return const MyHomePage();
+            }));
+          });
+          return false;
+        } on FirebaseAuthException catch (error) {
+          if (error.code == 'weak-password') {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Colors.blue,
+                content: Text("Password is weak")));
+          }
+          return false;
+        }
+      }
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(backgroundColor: Colors.blue, content: Text("$error")));
+      return true;
+    }
+  }
+
+  String? emailValidator(String? value) {
+    final pattern =
+        RegExp("^([a-zA-Z0-9_/-/./]+)@([a-zA-Z0-9_/-/.]+)[.]([a-zA-Z]{2,5})");
+    if (pattern.stringMatch(value ?? "") != value) {
+      return "Invalid email format";
+    }
+    return null;
   }
 }

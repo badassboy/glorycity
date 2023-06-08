@@ -93,9 +93,19 @@ class _SundaySchoolOfferingState extends State<SundaySchoolOffering> {
                                         dateGet,
                                         "Sunday School Offering",
                                         userProvider?.appUser?.id)
-                                    .whenComplete(() => setState(() {
-                                          isLoading = true;
-                                        }));
+                                    .whenComplete(() => {
+                                          setState(() {
+                                            isLoading = true;
+                                          }),
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                                  backgroundColor: Colors.blue,
+                                                  content: Center(
+                                                      child: Text(
+                                                          "Submit Success")))),
+                                          nameController.clear(),
+                                          amountController.clear()
+                                        });
                               },
                         child: Visibility(
                             visible: isLoading,

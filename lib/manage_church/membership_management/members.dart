@@ -35,7 +35,7 @@ class _MembersState extends State<Members> {
     return Scaffold(
       appBar: CustomAppBar(title: "Visitors"),
       body: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           //decoration: BoxDecoration(),
           child: Form(
             child: Column(
@@ -43,7 +43,7 @@ class _MembersState extends State<Members> {
               children: [
                 Expanded(
                   child: ListView(children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     // Text(
                     //   "Full Name",
                     //   style: TextStyle(fontSize: 18),
@@ -53,7 +53,7 @@ class _MembersState extends State<Members> {
                       hintText: "Enter name here",
                       controller: nameController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Phone Number",
                     //   style: TextStyle(fontSize: 18),
@@ -64,7 +64,7 @@ class _MembersState extends State<Members> {
                       keyboardType: TextInputType.number,
                       controller: numberController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Age",
                     //   style: TextStyle(fontSize: 18),
@@ -75,7 +75,7 @@ class _MembersState extends State<Members> {
                       keyboardType: TextInputType.number,
                       controller: ageController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Occupation",
                     //   style: TextStyle(fontSize: 18),
@@ -85,7 +85,7 @@ class _MembersState extends State<Members> {
                       hintText: "Enter occupation here",
                       controller: occupationController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Location",
                     //   style: TextStyle(fontSize: 18),
@@ -95,7 +95,7 @@ class _MembersState extends State<Members> {
                       hintText: "Enter place of residence here",
                       controller: locationController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     // Text(
                     //   "Hometown",
                     //   style: TextStyle(fontSize: 18),
@@ -105,7 +105,7 @@ class _MembersState extends State<Members> {
                       hintText: "Enter hometown here",
                       controller: hometownController,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     SecondaryTextFormField(
                       label: "Referral number of relative",
                       hintText: "Enter relative number here",
@@ -132,16 +132,32 @@ class _MembersState extends State<Members> {
                                   int.parse(referralNumberController.text),
                                   "Members",
                                   userProvider?.appUser?.id)
-                              .whenComplete(() => setState(() {
-                                    isLoading = true;
-                                  }));
+                              .whenComplete(() => {
+                                    setState(() {
+                                      isLoading = true;
+                                    }),
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            backgroundColor: Colors.blue,
+                                            content: Center(
+                                                child:
+                                                    Text("Submit Success")))),
+                                    amountController.clear(),
+                                    nameController.clear(),
+                                    numberController.clear(),
+                                    ageController.clear(),
+                                    occupationController.clear(),
+                                    locationController.clear(),
+                                    hometownController.clear(),
+                                    referralNumberController.clear(),
+                                  });
                         },
                   child: Visibility(
                       visible: isLoading,
                       replacement: const CircularProgressIndicator(),
                       child: const Text("Submit")),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 )
               ],

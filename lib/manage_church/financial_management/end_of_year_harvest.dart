@@ -88,9 +88,18 @@ class _EndOfYearHarvestState extends State<EndOfYearHarvest> {
                                       dateGet,
                                       "End Of Year Harvest",
                                       userProvider?.appUser?.id)
-                                  .whenComplete(() => setState(() {
-                                        isLoading = true;
-                                      }));
+                                  .whenComplete(() => {
+                                        setState(() {
+                                          isLoading = true;
+                                        }),
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                backgroundColor: Colors.blue,
+                                                content: Center(
+                                                    child: Text(
+                                                        "Submit Success")))),
+                                        amountController.clear()
+                                      });
                             },
                     ),
                   ]),

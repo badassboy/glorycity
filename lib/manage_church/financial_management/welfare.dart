@@ -81,9 +81,18 @@ class _WelfareState extends State<Welfare> {
                                       dateGet,
                                       "Welfare",
                                       userProvider?.appUser?.id)
-                                  .whenComplete(() => setState(() {
-                                        isLoading = true;
-                                      }));
+                                  .whenComplete(() => {
+                                        setState(() {
+                                          isLoading = true;
+                                        }),
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                backgroundColor: Colors.blue,
+                                                content: Center(
+                                                    child: Text(
+                                                        "Submit Success")))),
+                                        amountController.clear()
+                                      });
                             },
                       child: Visibility(
                           visible: isLoading,

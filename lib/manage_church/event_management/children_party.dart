@@ -112,9 +112,20 @@ class _ChildrenPartyState extends State<ChildrenParty> {
                                       activityController.text,
                                       "Children Party",
                                       userProvider?.appUser?.id)
-                                  .whenComplete(() => setState(() {
-                                        isLoading = true;
-                                      }));
+                                  .whenComplete(() => {
+                                        setState(() {
+                                          isLoading = true;
+                                        }),
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                backgroundColor: Colors.blue,
+                                                content: Center(
+                                                    child: Text(
+                                                        "Submit Success")))),
+                                        amountController.clear(),
+                                        activityController.clear(),
+                                        descriptionController.clear(),
+                                      });
                             },
                       child: Visibility(
                           visible: isLoading,

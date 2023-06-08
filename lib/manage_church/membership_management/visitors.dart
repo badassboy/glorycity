@@ -133,9 +133,25 @@ class _VisitorsState extends State<Visitors> {
                                   int.parse(referralNumberController.text),
                                   "Visitors",
                                   userProvider?.appUser?.id)
-                              .whenComplete(() => setState(() {
-                                    isLoading = true;
-                                  }));
+                              .whenComplete(() => {
+                                    setState(() {
+                                      isLoading = true;
+                                    }),
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            backgroundColor: Colors.blue,
+                                            content: Center(
+                                                child:
+                                                    Text("Submit Success")))),
+                                    amountController.clear(),
+                                    nameController.clear(),
+                                    numberController.clear(),
+                                    ageController.clear(),
+                                    occupationController.clear(),
+                                    locationController.clear(),
+                                    hometownController.clear(),
+                                    referralNumberController.clear(),
+                                  });
                         },
                   child: Visibility(
                       visible: isLoading,

@@ -70,11 +70,11 @@ class MyApp extends GetWidget<BaseController> {
                 ),
                 home: const DeciderPage(),
                 routes: {
-                  "event": (context) => EventManagement(),
-                  "member": (context) => MembershipManagement(),
-                  "people": (context) => GroupManagement(),
-                  "finance": (context) => FinancialManagement(),
-                  "attendance": (context) => AttendanceManagement(),
+                  "event": (context) => const EventManagement(),
+                  "member": (context) => const MembershipManagement(),
+                  "people": (context) => const GroupManagement(),
+                  "finance": (context) => const FinancialManagement(),
+                  "attendance": (context) => const AttendanceManagement(),
                   //"event":(context)=>MyApp(),
                 }),
           );
@@ -292,6 +292,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Center(
             child: Container(
+              padding: const EdgeInsets.only(top: 10.0),
               child: const Text(
                 "GloryCity Chapel International is a Kingdom minded ministry. We believe in The Father,\n The Son and The HolySpirit",
                 style: TextStyle(
@@ -301,7 +302,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              padding: const EdgeInsets.only(top: 10.0),
             ),
           ),
           Container(
@@ -475,12 +475,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.black, width: 18, height: 18),
               title: const Text('Manage Church'),
               onTap: () {
-                read(user: userProvider?.appUser);
+                getCurrentAppUser(user: userProvider?.appUser);
 
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => FinancialManagement()));
+                        builder: (context) => const FinancialManagement()));
               },
             ),
             ListTile(
@@ -543,8 +543,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.black, width: 18, height: 18),
               title: const Text('Online Radio'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => OnlineRadio()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OnlineRadio()));
               },
             ),
 
@@ -553,7 +555,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.black, width: 18, height: 18),
               title: const Text("TV station"),
               onTap: () {
-                GoYoutube();
+                goYoutube();
               },
             ),
 
@@ -615,7 +617,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void GoYoutube() {
+  void goYoutube() {
     String url = "https://www.youtube.com/channel/UCOMRXp2TviMT1wjHubRZW-Q";
     // String url = "https://www.youtube.com";
     _controller.visitYoutube(url);
@@ -631,7 +633,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _controller.visitFacebook(url);
   }
 
-  Future<void> read({required Users.User? user}) async {
+  Future<void> getCurrentAppUser({required Users.User? user}) async {
     String? email = user?.email;
     if (!context.mounted) {
       return;
@@ -649,7 +651,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // print("Success");
       return;
     }
-    if (result?.status == QueryStatus.Failed) {
+    else if (result?.status == QueryStatus.Failed) {
       // print("failed");
       setState(() {
         isLoading = false;

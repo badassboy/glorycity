@@ -19,14 +19,14 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
   bool isLoading = true;
   UserProvider? userProvider;
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final loginForm = Padding(
       padding: const EdgeInsets.all(10.0),
       child: Form(
-        key: _formKey,
+        key: loginFormKey,
         child: Column(
           children: [
             Container(
@@ -51,32 +51,35 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             CustomTextFormField(
-              controller: passwordController,
-              hintText: "Password",
-              obscureText: true,
+              controller: emailController,
+              hintText: "Enter email here",
+              validator: emailValidator,
             ),
             CustomTextFormField(
               controller: passwordController,
-              hintText: "Password",
+              hintText: "Enter password here",
+              obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Visibility(
               visible: isLoading,
-              replacement: Center(child: CircularProgressIndicator()),
+              replacement: const Center(child: CircularProgressIndicator()),
               child: DefaultPrimaryButton(
+                onPressed: !isLoading
+                    ? null
+                    : () async {
+                        if (loginFormKey.currentState?.validate() == true) {
+                          setState(() {
+                            isLoading = false;
+                          });
+
+                          await loginEmail();
+                        }
+                      },
                 child: const Text(
                   "Login",
                   style: TextStyle(fontSize: 18),
                 ),
-                onPressed: !isLoading
-                    ? null
-                    : () async {
-                        setState(() {
-                          isLoading = false;
-                        });
-
-                        await loginEmail().whenComplete(() => isLoading = true);
-                      },
               ),
             ),
             Row(
@@ -93,14 +96,10 @@ class _LoginPageState extends State<LoginPage> {
                           MaterialPageRoute(
                               builder: (context) => const SignUpScreen()));
                     },
-                    child: Visibility(
-                      visible: isLoading,
-                          replacement: const CircularProgressIndicator(),
-                      child: const Text(
-                        "Sign Up",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
                     ))
               ],
@@ -133,22 +132,53 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> loginEmail() async {
-    var login = await auth
-        .signInWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text)
-        .whenComplete(() async {
-      await userProvider?.getUser(email: auth.currentUser!.email!);
-      if (!context.mounted) {
-        return;
+    try {
+      final login = await auth.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      if (true) {
+        if (!context.mounted) {
+          return;
+        }
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.blue,
+            content: Text("Successful login ${auth.currentUser?.email}")));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) {
+          return const MyHomePage();
+        }));
       }
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.blue,
-          content: Text("Successful login ${auth.currentUser?.email}")));
-      Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) {
-        return const MyHomePage();
-      }));
-    });
-    // if (!login) {}
+      return print("Failed");
+      // await userProvider?.getUser(email: auth.currentUser!.email!);
+    } on FirebaseAuthException catch (error) {
+      if (error.code == 'user-not-found') {
+        if (!context.mounted) {
+          return;
+        }
+        setState(() {
+          isLoading = true;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            backgroundColor: Colors.blue, content: Text("User not found")));
+      } else if (error.code == 'wrong-password') {
+        //print('Wrong password provided for that user.');
+        if (!context.mounted) {
+          return;
+        }
+        setState(() {
+          isLoading = true;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            backgroundColor: Colors.blue, content: Text("Wrong password")));
+      }
+    }
+  }
+
+  String? emailValidator(String? value) {
+    final pattern =
+        RegExp("^([a-zA-Z0-9_/-/./]+)@([a-zA-Z0-9_/-/.]+)[.]([a-zA-Z]{2,5})");
+    if (pattern.stringMatch(value ?? "") != value) {
+      return "Invalid email format";
+    }
+    return null;
   }
 }

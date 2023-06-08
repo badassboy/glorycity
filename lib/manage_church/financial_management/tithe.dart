@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:glorycity/firebase_service.dart';
 import 'package:glorycity/user_provider.dart';
 import 'package:glorycity/widgets/custom_app_bar.dart';
 import 'package:glorycity/widgets/custom_buttons.dart';
@@ -23,20 +24,6 @@ class _TitheState extends State<Tithe> {
   TextEditingController amount = TextEditingController();
   String dateGet = "";
   bool isLoading = true;
-  Future<void> setTithe() async {
-    print(userProvider?.appUser?.id);
-    var user = <String, dynamic>{
-      "memberName": memberName.text,
-      "amount": amount.text,
-      "date": dateGet
-    };
-    await store
-        .collection("churchManagement")
-        .doc(userProvider?.appUser?.id)
-        .collection("Tithe")
-        .doc()
-        .set(user);
-  }
 
   @override
   void initState() {
@@ -101,9 +88,26 @@ class _TitheState extends State<Tithe> {
                               setState(() {
                                 isLoading = false;
                               });
-                              await setTithe().whenComplete(() => setState(() {
-                                    isLoading = true;
-                                  }));
+                              await FirebaseServices()
+                                  .addFinancialManagement(
+                                      memberName.text,
+                                      double.parse(amount.text),
+                                      dateGet,
+                                      "Tithe",
+                                      userProvider?.appUser?.id)
+                                  .whenComplete(() => {
+                                        setState(() {
+                                          isLoading = true;
+                                        }),
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                                backgroundColor: Colors.blue,
+                                                content: Center(
+                                                    child: Text(
+                                                        "Submit Success")))),
+                                        memberName.clear(),
+                                        amount.clear()
+                                      });
                             },
                       child: Visibility(
                           visible: isLoading,
