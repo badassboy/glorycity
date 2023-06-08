@@ -131,54 +131,99 @@ class _LoginPageState extends State<LoginPage> {
     passwordController.dispose();
   }
 
+  /// Logs in the user using email and password.
+  ///
+  /// The function attempts to sign in with the provided email and password using Firebase authentication.
+  /// If the login is successful, the user is redirected to the home page.
+  /// If the login fails, appropriate error messages are shown.
   Future<void> loginEmail() async {
     try {
+      // Attempt to sign in with email and password
       final login = await auth.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
+
       if (true) {
+        // Check if the context is still mounted
         if (!context.mounted) {
           return;
         }
+
+        // Show a success message with the logged-in user's email
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.blue,
             content: Text("Successful login ${auth.currentUser?.email}")));
+
+        // Redirect the user to the home page
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext context) {
           return const MyHomePage();
         }));
       }
+
+      // Print a message indicating failed login
       return print("Failed");
+
+      // TODO: Uncomment the following line to fetch user data
       // await userProvider?.getUser(email: auth.currentUser!.email!);
     } on FirebaseAuthException catch (error) {
+      // Handle specific Firebase authentication exceptions
+
       if (error.code == 'user-not-found') {
+        // Check if the context is still mounted
         if (!context.mounted) {
           return;
         }
+
+        // Set the loading state to true
         setState(() {
           isLoading = true;
         });
+
+        // Show a snackbar with a user not found message
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             backgroundColor: Colors.blue, content: Text("User not found")));
       } else if (error.code == 'wrong-password') {
-        //print('Wrong password provided for that user.');
+        // Check if the context is still mounted
         if (!context.mounted) {
           return;
         }
+
+        // Set the loading state to true
         setState(() {
           isLoading = true;
         });
+
+        // Show a snackbar with a wrong password message
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             backgroundColor: Colors.blue, content: Text("Wrong password")));
       }
     }
   }
 
+  /**
+    Validates the email format.
+   *
+   * The function checks if the provided email is in a valid format.
+   * It uses a regular expression pattern to match the email format.
+   * If the email format is invalid, it returns an error message.
+   * Otherwise, it returns null indicating a valid email format.
+   *
+   * @param value The email string to validate.
+   * @return An error message if the email format is invalid, otherwise null.
+   */
   String? emailValidator(String? value) {
+    // Define a regular expression pattern for email format
     final pattern =
-        RegExp("^([a-zA-Z0-9_/-/./]+)@([a-zA-Z0-9_/-/.]+)[.]([a-zA-Z]{2,5})");
+    RegExp("^([a-zA-Z0-9_/-/./]+)@([a-zA-Z0-9_/-/.]+)[.]([a-zA-Z]{2,5})");
+
+    // Check if the provided value matches the email format pattern
     if (pattern.stringMatch(value ?? "") != value) {
+      // Return an error message indicating invalid email format
       return "Invalid email format";
     }
+
+    // Return null to indicate a valid email format
     return null;
   }
+
 }
